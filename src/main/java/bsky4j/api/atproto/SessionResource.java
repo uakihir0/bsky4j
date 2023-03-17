@@ -1,10 +1,10 @@
 package bsky4j.api.atproto;
 
-import bsky4j.api.share.AuthRequest;
-import bsky4j.entity.atproto.session.SessionCreateRequest;
-import bsky4j.entity.atproto.session.SessionCreateResponse;
-import bsky4j.entity.atproto.session.SessionGetResponse;
-import bsky4j.entity.share.Response;
+import bsky4j.api.entity.share.AuthRequest;
+import bsky4j.api.entity.atproto.session.SessionCreateRequest;
+import bsky4j.api.entity.atproto.session.SessionCreateResponse;
+import bsky4j.api.entity.atproto.session.SessionGetResponse;
+import bsky4j.api.entity.share.Response;
 
 /**
  * ATProtocol/Session

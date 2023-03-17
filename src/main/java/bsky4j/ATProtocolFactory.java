@@ -4,7 +4,7 @@ import bsky4j.internal.atproto._ATProtocol;
 
 public class ATProtocolFactory {
 
-    public ATProtocol getInstance(String uri) {
+    public static ATProtocol getInstance(String uri) {
         return new _ATProtocol(uri);
     }
 }

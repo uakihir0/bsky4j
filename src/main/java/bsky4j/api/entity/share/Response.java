@@ -1,4 +1,4 @@
-package bsky4j.entity.share;
+package bsky4j.api.entity.share;
 
 /**
  * @author uakihir0

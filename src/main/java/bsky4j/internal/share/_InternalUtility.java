@@ -1,7 +1,7 @@
 package bsky4j.internal.share;
 
 import bsky4j.ATProtocolException;
-import bsky4j.entity.share.Response;
+import bsky4j.api.entity.share.Response;
 import com.google.gson.Gson;
 import net.socialhub.http.HttpException;
 import net.socialhub.http.HttpRequestBuilder;

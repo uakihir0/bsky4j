@@ -1,6 +1,6 @@
-package bsky4j.entity.atproto.session;
+package bsky4j.api.entity.atproto.session;
 
-import bsky4j.entity.share.JsonRequest;
+import bsky4j.api.entity.share.JsonRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +10,17 @@ public class SessionCreateRequest implements JsonRequest {
     private String handle;
     private String identifier;
     private String password;
+
+    @Override
+    public Map<String, Object> toJsonMap() {
+        HashMap<String, Object> map = new HashMap<>();
+        addParam(map, "handle", getHandle());
+        addParam(map, "identifier", getIdentifier());
+        addParam(map, "password", getPassword());
+        return map;
+    }
+
+    // region
 
     public static SessionCreateRequestBuilder builder() {
         return new SessionCreateRequestBuilder();
@@ -25,15 +36,6 @@ public class SessionCreateRequest implements JsonRequest {
 
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public Map<String, Object> toJsonMap() {
-        HashMap<String, Object> map = new HashMap<>();
-        addParam(map, "handle", getHandle());
-        addParam(map, "identifier", getIdentifier());
-        addParam(map, "password", getPassword());
-        return map;
     }
 
     public static final class SessionCreateRequestBuilder {
@@ -67,4 +69,6 @@ public class SessionCreateRequest implements JsonRequest {
             return sessionCreateRequest;
         }
     }
+
+    // endregion
 }

@@ -1,6 +1,6 @@
-package bsky4j.entity.atproto.session;
+package bsky4j.api.entity.atproto.session;
 
-import bsky4j.api.share.AuthRequest;
+import bsky4j.api.entity.share.AuthRequest;
 
 public class SessionRefreshRequest extends AuthRequest {
     SessionRefreshRequest(String accessJwt){
@@ -10,6 +10,8 @@ public class SessionRefreshRequest extends AuthRequest {
     private String refreshJwt;
     private String handle;
     private String did;
+
+    // region
 
     public static SessionRefreshRequestBuilder builder() {
         return new SessionRefreshRequestBuilder();
@@ -64,4 +66,6 @@ public class SessionRefreshRequest extends AuthRequest {
             return sessionRefreshRequest;
         }
     }
+
+    // endregion
 }

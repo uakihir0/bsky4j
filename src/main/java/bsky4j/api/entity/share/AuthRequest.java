@@ -1,4 +1,4 @@
-package bsky4j.api.share;
+package bsky4j.api.entity.share;
 
 public class AuthRequest {
 

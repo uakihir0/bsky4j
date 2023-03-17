@@ -1,4 +1,4 @@
-package bsky4j.entity.atproto.session;
+package bsky4j.api.entity.atproto.session;
 
 public class SessionCreateResponse {
     private String accessJwt;

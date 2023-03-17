@@ -2,7 +2,10 @@ package bsky4j.internal.share;
 
 import bsky4j.ATProtocolException;
 import bsky4j.api.entity.share.Response;
+import bsky4j.model.bsky.embed.EmbedExternal;
+import bsky4j.util.EmbedExternalDeserializer;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import net.socialhub.http.HttpException;
 import net.socialhub.http.HttpRequestBuilder;
 import net.socialhub.http.HttpResponse;
@@ -15,7 +18,11 @@ import java.net.URLEncoder;
  */
 public class _InternalUtility {
 
-    public final static Gson gson = new Gson();
+    public final static Gson gson = new GsonBuilder()
+            .registerTypeAdapter(
+                    EmbedExternal.class,
+                    new EmbedExternalDeserializer())
+            .create();
 
     private _InternalUtility() {
     }

@@ -2,10 +2,10 @@ package bsky4j.internal.atproto;
 
 import bsky4j.ATProtocolActions;
 import bsky4j.api.atproto.SessionResource;
-import bsky4j.api.entity.share.AuthRequest;
 import bsky4j.api.entity.atproto.session.SessionCreateRequest;
 import bsky4j.api.entity.atproto.session.SessionCreateResponse;
 import bsky4j.api.entity.atproto.session.SessionGetResponse;
+import bsky4j.api.entity.share.AuthRequest;
 import bsky4j.api.entity.share.Response;
 import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;

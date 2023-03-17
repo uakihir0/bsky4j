@@ -1,7 +1,5 @@
 package bsky4j.model.bsky.embed;
 
-import javax.annotation.Nullable;
-
 public class EmbedExternalPresented implements EmbedExternal{
 
     private EmbedExternalPresentedExternal external;

@@ -1,7 +1,5 @@
 package bsky4j.model.bsky.embed;
 
-import bsky4j.domain.Service;
-
 import java.util.List;
 
 public class EmbedImagesPresented implements EmbedExternal {

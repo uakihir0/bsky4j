@@ -1,9 +1,7 @@
 package bsky4j.internal.bsky;
 
-import bsky4j.ATProtocolActions;
 import bsky4j.BlueskyActions;
 import bsky4j.api.bsky.FeedResource;
-import bsky4j.api.entity.atproto.session.SessionCreateResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
 import bsky4j.api.entity.share.Response;

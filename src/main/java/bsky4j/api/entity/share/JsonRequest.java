@@ -2,7 +2,6 @@ package bsky4j.api.entity.share;
 
 import bsky4j.internal.share._InternalUtility;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public interface JsonRequest {

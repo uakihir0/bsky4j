@@ -4,6 +4,11 @@ import java.util.List;
 
 public class EmbedImagesPresented implements EmbedExternal {
 
+    @Override
+    public String getType() {
+        return "app.bsky.embed.images#presented";
+    }
+
     private List<EmbedImagesPresentedImage> images;
 
     // region // Getter&Setter

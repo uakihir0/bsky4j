@@ -7,9 +7,7 @@ public class FeedPostView {
     private String uri;
     private String cid;
     private ActorRefWithInfo author;
-
-    // private Object record;
-
+    private FeedRecord record;
     private EmbedExternal embed;
     private Integer replyCount;
     private Integer repostCount;
@@ -41,6 +39,14 @@ public class FeedPostView {
 
     public void setAuthor(ActorRefWithInfo author) {
         this.author = author;
+    }
+
+    public FeedRecord getRecord() {
+        return record;
+    }
+
+    public void setRecord(FeedRecord record) {
+        this.record = record;
     }
 
     public EmbedExternal getEmbed() {

@@ -1,6 +1,11 @@
 package bsky4j.model.bsky.embed;
 
-public class EmbedExternalPresented implements EmbedExternal{
+public class EmbedExternalPresented implements EmbedExternal {
+
+    @Override
+    public String getType() {
+        return "app.bsky.embed.external#presented";
+    }
 
     private EmbedExternalPresentedExternal external;
 

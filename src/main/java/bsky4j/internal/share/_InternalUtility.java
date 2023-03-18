@@ -3,7 +3,9 @@ package bsky4j.internal.share;
 import bsky4j.ATProtocolException;
 import bsky4j.api.entity.share.Response;
 import bsky4j.model.bsky.embed.EmbedExternal;
+import bsky4j.model.bsky.feed.FeedRecord;
 import bsky4j.util.EmbedExternalDeserializer;
+import bsky4j.util.FeedRecordDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.socialhub.http.HttpException;
@@ -22,6 +24,9 @@ public class _InternalUtility {
             .registerTypeAdapter(
                     EmbedExternal.class,
                     new EmbedExternalDeserializer())
+            .registerTypeAdapter(
+                    FeedRecord.class,
+                    new FeedRecordDeserializer())
             .create();
 
     private _InternalUtility() {

@@ -18,6 +18,8 @@ import net.socialhub.http.HttpResponse;
 import net.socialhub.http.HttpResponseCode;
 
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.SimpleTimeZone;
 
 /**
  * @author uakihir0
@@ -38,6 +40,9 @@ public class _InternalUtility {
                     FeedViewPostReasonUnion.class,
                     new FeedViewPostReasonDeserializer())
             .create();
+
+    public final static SimpleDateFormat dateFormat =
+            new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
     private _InternalUtility() {
     }

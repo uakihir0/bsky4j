@@ -2,11 +2,14 @@ package bsky4j.api.entity.bsky.feed;
 
 import bsky4j.api.entity.share.AuthRequest;
 import bsky4j.api.entity.share.MapRequest;
+import bsky4j.internal.share._InternalUtility;
 import bsky4j.model.bsky.embed.EmbedExternalUnion;
 import bsky4j.model.bsky.feed.FeedPostEntity;
+import bsky4j.model.bsky.feed.FeedPostMain;
 import bsky4j.model.bsky.feed.FeedPostReplyRef;
 
 import javax.annotation.Nullable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,10 +33,20 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
         HashMap<String, Object> map = new HashMap<>();
         addParam(map, "text", getText());
         addParam(map, "entities", getEntities());
-        addParam(map, "direction", getReply());
-        addParam(map, "limit", getEmbed());
-        addParam(map, "before", getCreatedAt());
+        addParam(map, "reply", getReply());
+        addParam(map, "embed", getEmbed());
+        addParam(map, "createdAt", getCreatedAt());
         return map;
+    }
+
+    public FeedPostMain toPost() {
+        FeedPostMain post = new FeedPostMain();
+        post.setText(getText());
+        post.setEntities(getEntities());
+        post.setReply(getReply());
+        post.setEmbed(getEmbed());
+        post.setCreatedAt(getCreatedAt());
+        return post;
     }
 
     // region
@@ -61,6 +74,9 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
     }
 
     public String getCreatedAt() {
+        if (createdAt == null) {
+            return _InternalUtility.dateFormat.format(new Date());
+        }
         return createdAt;
     }
 

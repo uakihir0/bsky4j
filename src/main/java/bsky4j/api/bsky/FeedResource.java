@@ -10,6 +10,8 @@ import bsky4j.api.entity.bsky.feed.FeedGetTimelineRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetTimelineResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetVotesRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetVotesResponse;
+import bsky4j.api.entity.bsky.feed.FeedPostRequest;
+import bsky4j.api.entity.bsky.feed.FeedPostResponse;
 import bsky4j.api.entity.share.Response;
 
 /**
@@ -45,8 +47,9 @@ public interface FeedResource {
 
     /**
      * Post feed operation.
+     * (ATProtocol/Repo createRecord wrapper)
      */
-    void post();
+    Response<FeedPostResponse> post(FeedPostRequest request);
 
     /**
      * Repost feed operation.

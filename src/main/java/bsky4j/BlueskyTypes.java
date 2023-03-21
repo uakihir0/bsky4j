@@ -4,7 +4,7 @@ package bsky4j;
  * Bluesky/ATProtocol
  * https://atproto.com/docs
  */
-public class BlueskyActions {
+public class BlueskyTypes {
 
     // Actor
     public static String ActorCreateScene = "app.bsky.actor.createScene";

@@ -2,7 +2,7 @@ package bsky4j.model.bsky.embed;
 
 import java.util.List;
 
-public class EmbedImagesPresented implements EmbedExternal {
+public class EmbedImagesPresented implements EmbedExternalUnion {
 
     @Override
     public String getType() {

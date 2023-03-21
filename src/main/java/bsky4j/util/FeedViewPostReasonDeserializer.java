@@ -1,8 +1,8 @@
 package bsky4j.util;
 
-import bsky4j.model.bsky.embed.EmbedExternalPresented;
-import bsky4j.model.bsky.embed.EmbedExternalUnion;
-import bsky4j.model.bsky.embed.EmbedImagesPresented;
+import bsky4j.model.bsky.feed.FeedViewPostReasonRepost;
+import bsky4j.model.bsky.feed.FeedViewPostReasonTrend;
+import bsky4j.model.bsky.feed.FeedViewPostReasonUnion;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -12,10 +12,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
-public class EmbedExternalDeserializer implements JsonDeserializer<EmbedExternalUnion> {
+public class FeedViewPostReasonDeserializer implements JsonDeserializer<FeedViewPostReasonUnion> {
 
     @Override
-    public EmbedExternalUnion deserialize(
+    public FeedViewPostReasonUnion deserialize(
             JsonElement json,
             Type typeOfT,
             JsonDeserializationContext context
@@ -25,13 +25,13 @@ public class EmbedExternalDeserializer implements JsonDeserializer<EmbedExternal
         JsonElement type = obj.get("$type");
 
         if (type != null) {
-            if (type.getAsString().equals("app.bsky.embed.images#presented")) {
-                return context.deserialize(obj, new TypeToken<EmbedImagesPresented>() {
+            if (type.getAsString().equals("app.bsky.feed.feedViewPost#reasonRepost")) {
+                return context.deserialize(obj, new TypeToken<FeedViewPostReasonRepost>() {
                 }.getType());
             }
 
-            if (type.getAsString().equals("app.bsky.embed.external#presented")) {
-                return context.deserialize(obj, new TypeToken<EmbedExternalPresented>() {
+            if (type.getAsString().equals("app.bsky.feed.feedViewPost#reasonTrend")) {
+                return context.deserialize(obj, new TypeToken<FeedViewPostReasonTrend>() {
                 }.getType());
             }
         }

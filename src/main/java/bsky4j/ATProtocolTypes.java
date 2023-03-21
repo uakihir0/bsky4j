@@ -4,7 +4,7 @@ package bsky4j;
  * ATProtocol
  * https://atproto.com/docs
  */
-public class ATProtocolActions {
+public class ATProtocolTypes {
 
     // Account
     public static final String AccountCreate = "com.atproto.account.create";

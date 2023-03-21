@@ -8,7 +8,7 @@ public class FeedViewPostMain {
     @Nullable
     private FeedViewPostReplyRef reply;
     @Nullable
-    private FeedViewPostReason reason;
+    private FeedViewPostReasonUnion reason;
 
     // region // Getter&Setter
     public FeedPostView getPost() {
@@ -29,11 +29,11 @@ public class FeedViewPostMain {
     }
 
     @Nullable
-    public FeedViewPostReason getReason() {
+    public FeedViewPostReasonUnion getReason() {
         return reason;
     }
 
-    public void setReason(@Nullable FeedViewPostReason reason) {
+    public void setReason(@Nullable FeedViewPostReasonUnion reason) {
         this.reason = reason;
     }
     // endregion

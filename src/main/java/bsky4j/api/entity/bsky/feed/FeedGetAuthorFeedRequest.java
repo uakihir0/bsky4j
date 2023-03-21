@@ -1,13 +1,13 @@
 package bsky4j.api.entity.bsky.feed;
 
 import bsky4j.api.entity.share.AuthRequest;
-import bsky4j.api.entity.share.JsonRequest;
+import bsky4j.api.entity.share.MapRequest;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FeedGetAuthorFeedRequest extends AuthRequest implements JsonRequest {
+public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest {
 
     FeedGetAuthorFeedRequest(String accessJwt) {
         super(accessJwt);
@@ -20,7 +20,7 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements JsonRequest
     private String before;
 
     @Override
-    public Map<String, Object> toJsonMap() {
+    public Map<String, Object> toMap() {
         HashMap<String, Object> map = new HashMap<>();
         addParam(map, "author", getAuthor());
         addParam(map, "limit", getLimit());

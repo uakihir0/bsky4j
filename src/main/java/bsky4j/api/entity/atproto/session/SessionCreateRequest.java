@@ -1,18 +1,18 @@
 package bsky4j.api.entity.atproto.session;
 
-import bsky4j.api.entity.share.JsonRequest;
+import bsky4j.api.entity.share.MapRequest;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class SessionCreateRequest implements JsonRequest {
+public class SessionCreateRequest implements MapRequest {
 
     private String handle;
     private String identifier;
     private String password;
 
     @Override
-    public Map<String, Object> toJsonMap() {
+    public Map<String, Object> toMap() {
         HashMap<String, Object> map = new HashMap<>();
         addParam(map, "handle", getHandle());
         addParam(map, "identifier", getIdentifier());

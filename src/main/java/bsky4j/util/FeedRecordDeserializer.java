@@ -1,10 +1,7 @@
 package bsky4j.util;
 
-import bsky4j.model.bsky.embed.EmbedExternal;
-import bsky4j.model.bsky.embed.EmbedExternalPresented;
-import bsky4j.model.bsky.embed.EmbedImagesPresented;
 import bsky4j.model.bsky.feed.FeedPostMain;
-import bsky4j.model.bsky.feed.FeedRecord;
+import bsky4j.model.bsky.feed.FeedRecordUnion;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -14,9 +11,9 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
-public class FeedRecordDeserializer implements JsonDeserializer<FeedRecord> {
+public class FeedRecordDeserializer implements JsonDeserializer<FeedRecordUnion> {
     @Override
-    public FeedRecord deserialize(
+    public FeedRecordUnion deserialize(
             JsonElement json,
             Type typeOfT,
             JsonDeserializationContext context

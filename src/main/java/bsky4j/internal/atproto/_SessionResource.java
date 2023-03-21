@@ -1,6 +1,6 @@
 package bsky4j.internal.atproto;
 
-import bsky4j.ATProtocolActions;
+import bsky4j.ATProtocolTypes;
 import bsky4j.api.atproto.SessionResource;
 import bsky4j.api.entity.atproto.session.SessionCreateRequest;
 import bsky4j.api.entity.atproto.session.SessionCreateResponse;
@@ -28,7 +28,7 @@ public class _SessionResource implements SessionResource {
 
             return new HttpRequestBuilder()
                     .target(this.uri)
-                    .path(ATProtocolActions.SessionCreate)
+                    .path(ATProtocolTypes.SessionCreate)
                     .request(HttpMediaType.APPLICATION_JSON)
                     .json(request.toJson())
                     .post();
@@ -41,7 +41,7 @@ public class _SessionResource implements SessionResource {
 
             return new HttpRequestBuilder()
                     .target(this.uri)
-                    .path(ATProtocolActions.SessionDelete)
+                    .path(ATProtocolTypes.SessionDelete)
                     .request(HttpMediaType.APPLICATION_JSON)
                     .header("Authorization", request.getBearerToken())
                     .post();
@@ -54,7 +54,7 @@ public class _SessionResource implements SessionResource {
 
             return new HttpRequestBuilder()
                     .target(this.uri)
-                    .path(ATProtocolActions.SessionGet)
+                    .path(ATProtocolTypes.SessionGet)
                     .request(HttpMediaType.APPLICATION_JSON)
                     .header("Authorization", request.getBearerToken())
                     .get();

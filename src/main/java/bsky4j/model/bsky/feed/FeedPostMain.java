@@ -1,10 +1,10 @@
 package bsky4j.model.bsky.feed;
 
-import bsky4j.model.bsky.embed.EmbedExternal;
+import bsky4j.model.bsky.embed.EmbedExternalUnion;
 
 import java.util.List;
 
-public class FeedPostMain implements FeedRecord {
+public class FeedPostMain implements FeedRecordUnion {
 
     @Override
     public String getType() {
@@ -14,7 +14,7 @@ public class FeedPostMain implements FeedRecord {
     private String text;
     private List<FeedPostEntity> entities;
     private FeedPostReplyRef reply;
-    private EmbedExternal embed;
+    private EmbedExternalUnion embed;
     private String createdAt;
 
     // region // Getter&Setter
@@ -42,11 +42,11 @@ public class FeedPostMain implements FeedRecord {
         this.reply = reply;
     }
 
-    public EmbedExternal getEmbed() {
+    public EmbedExternalUnion getEmbed() {
         return embed;
     }
 
-    public void setEmbed(EmbedExternal embed) {
+    public void setEmbed(EmbedExternalUnion embed) {
         this.embed = embed;
     }
 

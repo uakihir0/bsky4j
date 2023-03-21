@@ -2,7 +2,12 @@ package bsky4j.model.bsky.feed;
 
 import bsky4j.model.bsky.actor.ActorRefWithInfo;
 
-public class FeedViewPostReasonRepost implements FeedViewPostReason{
+public class FeedViewPostReasonRepost implements FeedViewPostReasonUnion {
+
+    @Override
+    public String getType() {
+        return "app.bsky.feed.feedViewPost#reasonRepost";
+    }
 
     private ActorRefWithInfo by;
     private String indexedAt;

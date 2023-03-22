@@ -7,6 +7,9 @@ import bsky4j.api.entity.atproto.blob.BlobUploadByStreamRequest;
 import bsky4j.api.entity.atproto.blob.BlobUploadRequest;
 import bsky4j.api.entity.atproto.blob.BlobUploadResponse;
 import bsky4j.api.entity.share.Response;
+import bsky4j.util.Bsky4JClientConfiguration;
+import net.socialhub.http.HttpClientConfiguration;
+import net.socialhub.http.HttpClientConfiguration.HttpClientDefaultConfiguration;
 import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 
@@ -25,10 +28,9 @@ public class _BlobResource implements BlobResource {
         return proceed(BlobUploadResponse.class, () -> {
 
             HttpRequestBuilder builder =
-                    new HttpRequestBuilder()
+                    new HttpRequestBuilder(new Bsky4JClientConfiguration())
                             .target(this.uri)
                             .path(ATProtocolTypes.BlobUpload);
-
 
             // From file
             if (request instanceof BlobUploadByFileRequest) {

@@ -1,7 +1,7 @@
 package bsky4j.util;
 
 import bsky4j.model.bsky.embed.EmbedExternalPresented;
-import bsky4j.model.bsky.embed.EmbedExternalUnion;
+import bsky4j.model.bsky.embed.EmbedPresentedUnion;
 import bsky4j.model.bsky.embed.EmbedImagesPresented;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -12,10 +12,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
-public class EmbedExternalDeserializer implements JsonDeserializer<EmbedExternalUnion> {
+public class EmbedPresentedDeserializer implements JsonDeserializer<EmbedPresentedUnion> {
 
     @Override
-    public EmbedExternalUnion deserialize(
+    public EmbedPresentedUnion deserialize(
             JsonElement json,
             Type typeOfT,
             JsonDeserializationContext context

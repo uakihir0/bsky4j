@@ -1,9 +1,6 @@
 package bsky4j.model.bsky.embed;
 
-/**
- * Undoc?
- */
-public class EmbedImagesPresentedCid {
+public class EmbedImagesImageBlob {
 
     private String cid;
     private String mimeType;

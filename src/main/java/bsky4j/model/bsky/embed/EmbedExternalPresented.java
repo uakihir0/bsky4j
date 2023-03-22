@@ -1,6 +1,6 @@
 package bsky4j.model.bsky.embed;
 
-public class EmbedExternalPresented implements EmbedExternalUnion {
+public class EmbedExternalPresented implements EmbedPresentedUnion {
 
     @Override
     public String getType() {

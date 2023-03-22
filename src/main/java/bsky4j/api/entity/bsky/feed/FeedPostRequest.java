@@ -3,7 +3,7 @@ package bsky4j.api.entity.bsky.feed;
 import bsky4j.api.entity.share.AuthRequest;
 import bsky4j.api.entity.share.MapRequest;
 import bsky4j.internal.share._InternalUtility;
-import bsky4j.model.bsky.embed.EmbedExternalUnion;
+import bsky4j.model.bsky.embed.EmbedUnion;
 import bsky4j.model.bsky.feed.FeedPostEntity;
 import bsky4j.model.bsky.feed.FeedPostMain;
 import bsky4j.model.bsky.feed.FeedPostReplyRef;
@@ -25,7 +25,7 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
     @Nullable
     private FeedPostReplyRef reply;
     @Nullable
-    private EmbedExternalUnion embed;
+    private EmbedUnion embed;
     private String createdAt;
 
     @Override
@@ -69,7 +69,7 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
     }
 
     @Nullable
-    public EmbedExternalUnion getEmbed() {
+    public EmbedUnion getEmbed() {
         return embed;
     }
 
@@ -84,7 +84,7 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
         private String text;
         private List<FeedPostEntity> entities;
         private FeedPostReplyRef reply;
-        private EmbedExternalUnion embed;
+        private EmbedUnion embed;
         private String createdAt;
         private String accessJwt;
 
@@ -106,7 +106,7 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
             return this;
         }
 
-        public FeedPostRequestBuilder embed(EmbedExternalUnion embed) {
+        public FeedPostRequestBuilder embed(EmbedUnion embed) {
             this.embed = embed;
             return this;
         }

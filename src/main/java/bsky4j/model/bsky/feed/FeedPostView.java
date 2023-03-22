@@ -1,14 +1,14 @@
 package bsky4j.model.bsky.feed;
 
 import bsky4j.model.bsky.actor.ActorRefWithInfo;
-import bsky4j.model.bsky.embed.EmbedExternalUnion;
+import bsky4j.model.bsky.embed.EmbedPresentedUnion;
 
 public class FeedPostView {
     private String uri;
     private String cid;
     private ActorRefWithInfo author;
     private FeedRecordUnion record;
-    private EmbedExternalUnion embed;
+    private EmbedPresentedUnion embed;
     private Integer replyCount;
     private Integer repostCount;
     private Integer upvoteCount;
@@ -49,11 +49,11 @@ public class FeedPostView {
         this.record = record;
     }
 
-    public EmbedExternalUnion getEmbed() {
+    public EmbedPresentedUnion getEmbed() {
         return embed;
     }
 
-    public void setEmbed(EmbedExternalUnion embed) {
+    public void setEmbed(EmbedPresentedUnion embed) {
         this.embed = embed;
     }
 

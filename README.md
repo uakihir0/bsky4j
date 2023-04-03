@@ -23,10 +23,10 @@ dependencies {
 ### CreateSession 
 
 ```java
-Response<SessionCreateResponse> response = BlueskyFactory
+Response<ServerCreateSessionResponse> response = BlueskyFactory
         .getInstance(Service.BSKY_SOCIAL.getUri())
-        .session().create(
-                SessionCreateRequest.builder()
+        .session().createSession(
+                ServerCreateSessionRequest.builder()
                         .handle("HANDLER")
                         .password("PASSWORD")
                         .build()

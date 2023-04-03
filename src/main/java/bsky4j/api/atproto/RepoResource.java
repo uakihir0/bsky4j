@@ -1,16 +1,19 @@
 package bsky4j.api.atproto;
 
+import bsky4j.api.entity.atproto.repo.RepoUploadBlobRequest;
+import bsky4j.api.entity.atproto.repo.RepoUploadBlobResponse;
+import bsky4j.api.entity.share.Response;
+
 /**
  * ATProtocol/Repo
- * https://atproto.com/lexicons/com-atproto-repo
+ * <a href="https://atproto.com/lexicons/com-atproto-repo">Reference</a>
  */
 public interface RepoResource {
 
     /**
-     * TODO
-     * Apply a batch transaction of creates, puts, and deletes.
+     * Apply a batch transaction of creates, updates, and deletes.
      */
-    void batchWrite();
+    void applyWrites();
 
     /**
      * Create a new record.
@@ -18,31 +21,32 @@ public interface RepoResource {
     void createRecord();
 
     /**
-     * Delete a record.
+     * Delete a record, or ensure it doesn't exist.
      */
     void deleteRecord();
 
     /**
-     * TODO:
      * Get information about the repo, including the list of collections.
      */
-    void describe();
+    void describeRepo();
 
     /**
-     * TODO:
-     * Fetch a record.
+     * Get a record.
      */
     void getRecord();
 
     /**
-     * TODO:
      * List a range of records in a collection.
      */
     void listRecords();
 
     /**
-     * TODO:
-     * Write a record.
+     * Write a record, creating or updating it as needed.
      */
     void putRecord();
+
+    /**
+     * Upload a new blob to be added to repo in a later request.
+     */
+    Response<RepoUploadBlobResponse> uploadBlob(RepoUploadBlobRequest request);
 }

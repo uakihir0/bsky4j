@@ -1,11 +1,11 @@
 package bsky4j;
 
-import bsky4j.api.atproto.BlobResource;
-import bsky4j.api.atproto.SessionResource;
+import bsky4j.api.atproto.RepoResource;
+import bsky4j.api.atproto.ServerResource;
 
 public interface ATProtocol {
 
-    SessionResource session();
+    ServerResource session();
 
-    BlobResource blob();
+    RepoResource repo();
 }

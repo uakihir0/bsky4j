@@ -19,7 +19,7 @@ public class FeedGetRepostedByRequest extends AuthRequest implements MapRequest 
     @Nullable
     private Integer limit;
     @Nullable
-    private String before;
+    private String cursor;
 
     @Override
     public Map<String, Object> toMap() {
@@ -27,15 +27,15 @@ public class FeedGetRepostedByRequest extends AuthRequest implements MapRequest 
         addParam(map, "uri", getUri());
         addParam(map, "cid", getCid());
         addParam(map, "limit", getLimit());
-        addParam(map, "before", getBefore());
+        addParam(map, "cursor", getCursor());
         return map;
     }
 
+    // region
     public static FeedGetRepostedByRequestBuilder builder() {
         return new FeedGetRepostedByRequestBuilder();
     }
 
-    // region
     public String getUri() {
         return uri;
     }
@@ -51,15 +51,15 @@ public class FeedGetRepostedByRequest extends AuthRequest implements MapRequest 
     }
 
     @Nullable
-    public String getBefore() {
-        return before;
+    public String getCursor() {
+        return cursor;
     }
 
     public static final class FeedGetRepostedByRequestBuilder {
         private String uri;
         private String cid;
         private Integer limit;
-        private String before;
+        private String cursor;
         private String accessJwt;
 
         private FeedGetRepostedByRequestBuilder() {
@@ -80,8 +80,8 @@ public class FeedGetRepostedByRequest extends AuthRequest implements MapRequest 
             return this;
         }
 
-        public FeedGetRepostedByRequestBuilder before(String before) {
-            this.before = before;
+        public FeedGetRepostedByRequestBuilder cursor(String cursor) {
+            this.cursor = cursor;
             return this;
         }
 
@@ -92,12 +92,11 @@ public class FeedGetRepostedByRequest extends AuthRequest implements MapRequest 
 
         public FeedGetRepostedByRequest build() {
             FeedGetRepostedByRequest feedGetRepostedByRequest = new FeedGetRepostedByRequest(accessJwt);
-            feedGetRepostedByRequest.before = this.before;
-            feedGetRepostedByRequest.uri = this.uri;
             feedGetRepostedByRequest.cid = this.cid;
             feedGetRepostedByRequest.limit = this.limit;
+            feedGetRepostedByRequest.uri = this.uri;
+            feedGetRepostedByRequest.cursor = this.cursor;
             return feedGetRepostedByRequest;
         }
     }
-    // endregion
 }

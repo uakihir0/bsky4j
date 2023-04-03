@@ -1,24 +1,24 @@
 package bsky4j.internal.atproto;
 
 import bsky4j.ATProtocol;
-import bsky4j.api.atproto.BlobResource;
-import bsky4j.api.atproto.SessionResource;
+import bsky4j.api.atproto.RepoResource;
+import bsky4j.api.atproto.ServerResource;
 
 public class _ATProtocol implements ATProtocol {
 
-    protected final SessionResource session;
-    protected final BlobResource blob;
+    protected final ServerResource session;
+    protected final RepoResource repo;
 
     public _ATProtocol(String uri) {
-        this.session = new _SessionResource(uri);
-        this.blob = new _BlobResource(uri);
+        this.session = new _ServerResource(uri);
+        this.repo = new _RepoResource(uri);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public SessionResource session() {
+    public ServerResource session() {
         return session;
     }
 
@@ -26,7 +26,7 @@ public class _ATProtocol implements ATProtocol {
      * {@inheritDoc}
      */
     @Override
-    public BlobResource blob() {
-        return blob;
+    public RepoResource repo() {
+        return repo;
     }
 }

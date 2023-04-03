@@ -17,19 +17,18 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest 
     @Nullable
     private Integer limit;
     @Nullable
-    private String before;
+    private String cursor;
 
     @Override
     public Map<String, Object> toMap() {
         HashMap<String, Object> map = new HashMap<>();
         addParam(map, "author", getAuthor());
         addParam(map, "limit", getLimit());
-        addParam(map, "before", getBefore());
+        addParam(map, "cursor", getCursor());
         return map;
     }
 
     // region
-
     public static FeedGetAuthorFeedRequestBuilder builder() {
         return new FeedGetAuthorFeedRequestBuilder();
     }
@@ -44,14 +43,14 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest 
     }
 
     @Nullable
-    public String getBefore() {
-        return before;
+    public String getCursor() {
+        return cursor;
     }
 
     public static final class FeedGetAuthorFeedRequestBuilder {
         private String author;
         private Integer limit;
-        private String before;
+        private String cursor;
         private String accessJwt;
 
         private FeedGetAuthorFeedRequestBuilder() {
@@ -67,8 +66,8 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest 
             return this;
         }
 
-        public FeedGetAuthorFeedRequestBuilder before(String before) {
-            this.before = before;
+        public FeedGetAuthorFeedRequestBuilder cursor(String cursor) {
+            this.cursor = cursor;
             return this;
         }
 
@@ -80,11 +79,10 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest 
         public FeedGetAuthorFeedRequest build() {
             FeedGetAuthorFeedRequest feedGetAuthorFeedRequest = new FeedGetAuthorFeedRequest(accessJwt);
             feedGetAuthorFeedRequest.limit = this.limit;
+            feedGetAuthorFeedRequest.cursor = this.cursor;
             feedGetAuthorFeedRequest.author = this.author;
-            feedGetAuthorFeedRequest.before = this.before;
             return feedGetAuthorFeedRequest;
         }
     }
-
     // endregion
 }

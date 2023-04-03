@@ -2,21 +2,21 @@ package bsky4j.api.bsky;
 
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetLikesRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetLikesResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetPostThreadRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetPostThreadResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetRepostedByRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetRepostedByResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetTimelineRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetTimelineResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetVotesRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetVotesResponse;
 import bsky4j.api.entity.bsky.feed.FeedPostRequest;
 import bsky4j.api.entity.bsky.feed.FeedPostResponse;
 import bsky4j.api.entity.share.Response;
 
 /**
  * Bluesky/Feed
- * https://atproto.com/lexicons/app-bsky-feed
+ * <a href="https://atproto.com/lexicons/app-bsky-feed">Reference</a>
  */
 public interface FeedResource {
 
@@ -24,6 +24,11 @@ public interface FeedResource {
      * A view of a user's feed.
      */
     Response<FeedGetAuthorFeedResponse> getAuthorFeed(FeedGetAuthorFeedRequest request);
+
+    /**
+     *
+     */
+    Response<FeedGetLikesResponse> getLikes(FeedGetLikesRequest request);
 
     /**
      *
@@ -41,9 +46,10 @@ public interface FeedResource {
     Response<FeedGetTimelineResponse> getTimeline(FeedGetTimelineRequest request);
 
     /**
-     *
+     * Like feed operation.
+     * (ATProtocol/Repo createRecord wrapper)
      */
-    Response<FeedGetVotesResponse> getVotes(FeedGetVotesRequest request);
+    Response<FeedPostResponse> like(FeedPostRequest request);
 
     /**
      * Post feed operation.
@@ -53,17 +59,7 @@ public interface FeedResource {
 
     /**
      * Repost feed operation.
+     * (ATProtocol/Repo createRecord wrapper)
      */
-    void repost();
-
-    /**
-     * Upvote, downvote, or clear the user's vote for a post.
-     */
-    void setVote();
-
-    // TODO
-    void trend();
-
-    // TODO
-    void vote();
+    Response<FeedPostResponse> repost(FeedPostRequest request);
 }

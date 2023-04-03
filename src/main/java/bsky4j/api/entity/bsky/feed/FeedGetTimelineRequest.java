@@ -18,14 +18,14 @@ public class FeedGetTimelineRequest extends AuthRequest implements MapRequest {
     @Nullable
     private Integer limit;
     @Nullable
-    private String before;
+    private String cursor;
 
     @Override
     public Map<String, Object> toMap() {
         HashMap<String, Object> map = new HashMap<>();
         addParam(map, "algorithm", getAlgorithm());
         addParam(map, "limit", getLimit());
-        addParam(map, "before", getBefore());
+        addParam(map, "cursor", getCursor());
         return map;
     }
 
@@ -45,14 +45,14 @@ public class FeedGetTimelineRequest extends AuthRequest implements MapRequest {
     }
 
     @Nullable
-    public String getBefore() {
-        return before;
+    public String getCursor() {
+        return cursor;
     }
 
     public static final class FeedGetTimelineRequestBuilder {
         private String algorithm;
         private Integer limit;
-        private String before;
+        private String cursor;
         private String accessJwt;
 
         private FeedGetTimelineRequestBuilder() {
@@ -68,8 +68,8 @@ public class FeedGetTimelineRequest extends AuthRequest implements MapRequest {
             return this;
         }
 
-        public FeedGetTimelineRequestBuilder before(String before) {
-            this.before = before;
+        public FeedGetTimelineRequestBuilder cursor(String cursor) {
+            this.cursor = cursor;
             return this;
         }
 
@@ -80,11 +80,10 @@ public class FeedGetTimelineRequest extends AuthRequest implements MapRequest {
 
         public FeedGetTimelineRequest build() {
             FeedGetTimelineRequest feedGetTimelineRequest = new FeedGetTimelineRequest(accessJwt);
-            feedGetTimelineRequest.limit = this.limit;
+            feedGetTimelineRequest.cursor = this.cursor;
             feedGetTimelineRequest.algorithm = this.algorithm;
-            feedGetTimelineRequest.before = this.before;
+            feedGetTimelineRequest.limit = this.limit;
             return feedGetTimelineRequest;
         }
     }
-    // endregion
 }

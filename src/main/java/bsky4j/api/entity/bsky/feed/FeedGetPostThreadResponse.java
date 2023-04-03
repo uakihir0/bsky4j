@@ -1,17 +1,17 @@
 package bsky4j.api.entity.bsky.feed;
 
-import bsky4j.model.bsky.feed.FeedGetPostThreadUnion;
+import bsky4j.model.bsky.feed.FeedDefsThreadUnion;
 
 public class FeedGetPostThreadResponse {
 
-    private FeedGetPostThreadUnion thread;
+    private FeedDefsThreadUnion thread;
 
-    // region // Getter&Setter
-    public FeedGetPostThreadUnion getThread() {
+    // region
+    public FeedDefsThreadUnion getThread() {
         return thread;
     }
 
-    public void setThread(FeedGetPostThreadUnion thread) {
+    public void setThread(FeedDefsThreadUnion thread) {
         this.thread = thread;
     }
     // endregion

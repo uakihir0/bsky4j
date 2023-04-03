@@ -5,7 +5,7 @@ public class RepoCreateRecordResponse {
     private String uri;
     private String cid;
 
-    // region // Getter&Setter
+    // region
     public String getUri() {
         return uri;
     }

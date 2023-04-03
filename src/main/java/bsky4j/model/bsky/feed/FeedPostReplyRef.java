@@ -1,25 +1,26 @@
 package bsky4j.model.bsky.feed;
 
-import bsky4j.model.atproto.repo.RepoStrongRefMain;
+import bsky4j.model.atproto.repo.RepoStrongRef;
 
 public class FeedPostReplyRef {
-    private RepoStrongRefMain root;
-    private RepoStrongRefMain parent;
 
-    // region // Getter&Setter
-    public RepoStrongRefMain getRoot() {
+    private RepoStrongRef root;
+    private RepoStrongRef parent;
+
+    // region
+    public RepoStrongRef getRoot() {
         return root;
     }
 
-    public void setRoot(RepoStrongRefMain root) {
+    public void setRoot(RepoStrongRef root) {
         this.root = root;
     }
 
-    public RepoStrongRefMain getParent() {
+    public RepoStrongRef getParent() {
         return parent;
     }
 
-    public void setParent(RepoStrongRefMain parent) {
+    public void setParent(RepoStrongRef parent) {
         this.parent = parent;
     }
     // endregion

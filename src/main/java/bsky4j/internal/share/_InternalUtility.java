@@ -2,14 +2,12 @@ package bsky4j.internal.share;
 
 import bsky4j.ATProtocolException;
 import bsky4j.api.entity.share.Response;
-import bsky4j.model.bsky.embed.EmbedPresentedUnion;
-import bsky4j.model.bsky.feed.FeedGetPostThreadUnion;
-import bsky4j.model.bsky.feed.FeedRecordUnion;
-import bsky4j.model.bsky.feed.FeedViewPostReasonUnion;
-import bsky4j.util.EmbedPresentedDeserializer;
-import bsky4j.util.FeedGetPostThreadDeserializer;
-import bsky4j.util.FeedRecordDeserializer;
-import bsky4j.util.FeedViewPostReasonDeserializer;
+import bsky4j.model.bsky.embed.EmbedViewUnion;
+import bsky4j.model.bsky.feed.FeedDefsThreadUnion;
+import bsky4j.model.share.RecordUnion;
+import bsky4j.util.EmbedViewDeserializer;
+import bsky4j.util.FeedDefsThreadDeserializer;
+import bsky4j.util.RecordDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.socialhub.http.HttpException;
@@ -27,17 +25,14 @@ public class _InternalUtility {
 
     public final static Gson gson = new GsonBuilder()
             .registerTypeAdapter(
-                    EmbedPresentedUnion.class,
-                    new EmbedPresentedDeserializer())
+                    EmbedViewUnion.class,
+                    new EmbedViewDeserializer())
             .registerTypeAdapter(
-                    FeedRecordUnion.class,
-                    new FeedRecordDeserializer())
+                    RecordUnion.class,
+                    new RecordDeserializer())
             .registerTypeAdapter(
-                    FeedGetPostThreadUnion.class,
-                    new FeedGetPostThreadDeserializer())
-            .registerTypeAdapter(
-                    FeedViewPostReasonUnion.class,
-                    new FeedViewPostReasonDeserializer())
+                    FeedDefsThreadUnion.class,
+                    new FeedDefsThreadDeserializer())
             .create();
 
     public final static SimpleDateFormat dateFormat =

@@ -1,7 +1,8 @@
 package bsky4j.model.bsky.embed;
 
 /**
- * @see EmbedImagesMain
+ * @see EmbedExternal
+ * @see EmbedImages
  */
 public interface EmbedUnion {
 }

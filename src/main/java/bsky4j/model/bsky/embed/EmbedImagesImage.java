@@ -2,15 +2,15 @@ package bsky4j.model.bsky.embed;
 
 public class EmbedImagesImage {
 
-    private EmbedImagesImageBlob image;
+    private String image;
     private String alt;
 
-    // region // Getter&Setter
-    public EmbedImagesImageBlob getImage() {
+    // region
+    public String getImage() {
         return image;
     }
 
-    public void setImage(EmbedImagesImageBlob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

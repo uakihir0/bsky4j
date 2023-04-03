@@ -1,16 +1,17 @@
 package bsky4j.api.entity.bsky.feed;
 
-import bsky4j.model.bsky.feed.FeedViewPostMain;
+import bsky4j.model.bsky.feed.FeedDefsFeedViewPost;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
 public class FeedGetTimelineResponse {
+
     @Nullable
     private String cursor;
-    private List<FeedViewPostMain> feed;
+    private List<FeedDefsFeedViewPost> feed;
 
-    // region Getter&Setter
+    // region
     @Nullable
     public String getCursor() {
         return cursor;
@@ -20,11 +21,11 @@ public class FeedGetTimelineResponse {
         this.cursor = cursor;
     }
 
-    public List<FeedViewPostMain> getFeed() {
+    public List<FeedDefsFeedViewPost> getFeed() {
         return feed;
     }
 
-    public void setFeed(List<FeedViewPostMain> feed) {
+    public void setFeed(List<FeedDefsFeedViewPost> feed) {
         this.feed = feed;
     }
     // endregion

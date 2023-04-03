@@ -2,14 +2,12 @@ package bsky4j.api.entity.bsky.feed;
 
 import bsky4j.api.entity.share.AuthRequest;
 import bsky4j.api.entity.share.MapRequest;
-import bsky4j.internal.share._InternalUtility;
 import bsky4j.model.bsky.embed.EmbedUnion;
-import bsky4j.model.bsky.feed.FeedPostEntity;
-import bsky4j.model.bsky.feed.FeedPostMain;
+import bsky4j.model.bsky.feed.FeedPost;
 import bsky4j.model.bsky.feed.FeedPostReplyRef;
+import bsky4j.model.bsky.richtext.RichtextFacet;
 
 import javax.annotation.Nullable;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +19,7 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
 
     private String text;
     @Nullable
-    private List<FeedPostEntity> entities;
+    private List<RichtextFacet> facets;
     @Nullable
     private FeedPostReplyRef reply;
     @Nullable
@@ -32,17 +30,17 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
     public Map<String, Object> toMap() {
         HashMap<String, Object> map = new HashMap<>();
         addParam(map, "text", getText());
-        addParam(map, "entities", getEntities());
+        addParam(map, "facets", getFacets());
         addParam(map, "reply", getReply());
         addParam(map, "embed", getEmbed());
         addParam(map, "createdAt", getCreatedAt());
         return map;
     }
 
-    public FeedPostMain toPost() {
-        FeedPostMain post = new FeedPostMain();
+    public FeedPost toPost() {
+        FeedPost post = new FeedPost();
         post.setText(getText());
-        post.setEntities(getEntities());
+        post.setFacets(getFacets());
         post.setReply(getReply());
         post.setEmbed(getEmbed());
         post.setCreatedAt(getCreatedAt());
@@ -59,8 +57,8 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
     }
 
     @Nullable
-    public List<FeedPostEntity> getEntities() {
-        return entities;
+    public List<RichtextFacet> getFacets() {
+        return facets;
     }
 
     @Nullable
@@ -74,15 +72,12 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
     }
 
     public String getCreatedAt() {
-        if (createdAt == null) {
-            return _InternalUtility.dateFormat.format(new Date());
-        }
         return createdAt;
     }
 
     public static final class FeedPostRequestBuilder {
         private String text;
-        private List<FeedPostEntity> entities;
+        private List<RichtextFacet> facets;
         private FeedPostReplyRef reply;
         private EmbedUnion embed;
         private String createdAt;
@@ -91,13 +86,17 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
         private FeedPostRequestBuilder() {
         }
 
+        public static FeedPostRequestBuilder aFeedPostRequest() {
+            return new FeedPostRequestBuilder();
+        }
+
         public FeedPostRequestBuilder text(String text) {
             this.text = text;
             return this;
         }
 
-        public FeedPostRequestBuilder entities(List<FeedPostEntity> entities) {
-            this.entities = entities;
+        public FeedPostRequestBuilder facets(List<RichtextFacet> facets) {
+            this.facets = facets;
             return this;
         }
 
@@ -123,11 +122,11 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
 
         public FeedPostRequest build() {
             FeedPostRequest feedPostRequest = new FeedPostRequest(accessJwt);
+            feedPostRequest.facets = this.facets;
+            feedPostRequest.text = this.text;
+            feedPostRequest.embed = this.embed;
             feedPostRequest.reply = this.reply;
             feedPostRequest.createdAt = this.createdAt;
-            feedPostRequest.entities = this.entities;
-            feedPostRequest.embed = this.embed;
-            feedPostRequest.text = this.text;
             return feedPostRequest;
         }
     }

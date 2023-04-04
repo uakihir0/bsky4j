@@ -129,10 +129,6 @@ public class _FeedResource implements FeedResource {
                             .record(request.toPost())
                             .build();
 
-            System.out.println(new Gson().toJson(request.toPost()));
-            System.out.println(">>>");
-            System.out.println(new Gson().toJson(record.getRecord()));
-
             return new HttpRequestBuilder()
                     .target(this.uri)
                     .path(ATProtocolTypes.RepoCreateRecord)

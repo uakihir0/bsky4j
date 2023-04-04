@@ -34,7 +34,6 @@ public class _ServerResource implements ServerResource {
     @Override
     public Response<ServerCreateSessionResponse> createSession(ServerCreateSessionRequest request) {
         return proceed(ServerCreateSessionResponse.class, () -> {
-            System.out.println(request.toJson());
 
             return new HttpRequestBuilder()
                     .target(this.uri)

@@ -2,12 +2,14 @@ package bsky4j.api.entity.bsky.feed;
 
 import bsky4j.api.entity.share.AuthRequest;
 import bsky4j.api.entity.share.MapRequest;
+import bsky4j.internal.share._InternalUtility;
 import bsky4j.model.bsky.embed.EmbedUnion;
 import bsky4j.model.bsky.feed.FeedPost;
 import bsky4j.model.bsky.feed.FeedPostReplyRef;
 import bsky4j.model.bsky.richtext.RichtextFacet;
 
 import javax.annotation.Nullable;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +74,9 @@ public class FeedPostRequest extends AuthRequest implements MapRequest {
     }
 
     public String getCreatedAt() {
+        if (createdAt == null) {
+            return _InternalUtility.dateFormat.format(new Date());
+        }
         return createdAt;
     }
 

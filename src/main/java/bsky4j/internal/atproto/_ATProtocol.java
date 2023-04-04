@@ -6,11 +6,11 @@ import bsky4j.api.atproto.ServerResource;
 
 public class _ATProtocol implements ATProtocol {
 
-    protected final ServerResource session;
+    protected final ServerResource server;
     protected final RepoResource repo;
 
     public _ATProtocol(String uri) {
-        this.session = new _ServerResource(uri);
+        this.server = new _ServerResource(uri);
         this.repo = new _RepoResource(uri);
     }
 
@@ -18,8 +18,8 @@ public class _ATProtocol implements ATProtocol {
      * {@inheritDoc}
      */
     @Override
-    public ServerResource session() {
-        return session;
+    public ServerResource server() {
+        return server;
     }
 
     /**

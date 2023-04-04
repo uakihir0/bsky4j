@@ -1,15 +1,17 @@
 package bsky4j.api.entity.atproto.repo;
 
+import bsky4j.model.share.Blob;
+
 public class RepoUploadBlobResponse {
 
-    private String blob;
+    private Blob blob;
 
     // region
-    public String getBlob() {
+    public Blob getBlob() {
         return blob;
     }
 
-    public void setBlob(String blob) {
+    public void setBlob(Blob blob) {
         this.blob = blob;
     }
     // endregion

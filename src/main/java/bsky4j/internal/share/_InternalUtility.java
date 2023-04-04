@@ -2,12 +2,17 @@ package bsky4j.internal.share;
 
 import bsky4j.ATProtocolException;
 import bsky4j.api.entity.share.Response;
+import bsky4j.model.bsky.embed.EmbedUnion;
 import bsky4j.model.bsky.embed.EmbedViewUnion;
 import bsky4j.model.bsky.feed.FeedDefsThreadUnion;
+import bsky4j.model.bsky.richtext.RichtextFacetFeatureUnion;
 import bsky4j.model.share.RecordUnion;
+import bsky4j.util.EmbedDeserializer;
+import bsky4j.util.EmbedSerializer;
 import bsky4j.util.EmbedViewDeserializer;
 import bsky4j.util.FeedDefsThreadDeserializer;
 import bsky4j.util.RecordDeserializer;
+import bsky4j.util.RichtextFacetFeatureDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.socialhub.http.HttpException;
@@ -25,6 +30,12 @@ public class _InternalUtility {
 
     public final static Gson gson = new GsonBuilder()
             .registerTypeAdapter(
+                    EmbedUnion.class,
+                    new EmbedDeserializer())
+            .registerTypeAdapter(
+                    EmbedUnion.class,
+                    new EmbedSerializer())
+            .registerTypeAdapter(
                     EmbedViewUnion.class,
                     new EmbedViewDeserializer())
             .registerTypeAdapter(
@@ -33,6 +44,9 @@ public class _InternalUtility {
             .registerTypeAdapter(
                     FeedDefsThreadUnion.class,
                     new FeedDefsThreadDeserializer())
+            .registerTypeAdapter(
+                    RichtextFacetFeatureUnion.class,
+                    new RichtextFacetFeatureDeserializer())
             .create();
 
     public final static SimpleDateFormat dateFormat =

@@ -1,5 +1,6 @@
 package bsky4j.model.bsky.embed;
 
+import bsky4j.BlueskyTypes;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class EmbedImages implements EmbedUnion {
 
     @SerializedName("$type")
-    private String type = "app.bsky.embed.images";
+    private String type = BlueskyTypes.EmbedImages;
 
     private List<EmbedImagesImage> images;
 

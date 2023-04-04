@@ -1,5 +1,6 @@
 package bsky4j.model.bsky.embed;
 
+import bsky4j.BlueskyTypes;
 import com.google.gson.annotations.SerializedName;
 
 /**
@@ -8,11 +9,19 @@ import com.google.gson.annotations.SerializedName;
 public class EmbedExternal implements EmbedUnion {
 
     @SerializedName("$type")
-    private String type = "app.bsky.embed.external";
+    private String type = BlueskyTypes.EmbedExternal;
 
     private EmbedExternalExternal external;
 
     // region
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public EmbedExternalExternal getExternal() {
         return external;
     }

@@ -5,7 +5,7 @@ import bsky4j.api.atproto.ServerResource;
 
 public interface ATProtocol {
 
-    ServerResource session();
+    ServerResource server();
 
     RepoResource repo();
 }

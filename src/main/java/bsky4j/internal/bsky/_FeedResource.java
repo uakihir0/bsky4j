@@ -17,6 +17,7 @@ import bsky4j.api.entity.bsky.feed.FeedGetTimelineResponse;
 import bsky4j.api.entity.bsky.feed.FeedPostRequest;
 import bsky4j.api.entity.bsky.feed.FeedPostResponse;
 import bsky4j.api.entity.share.Response;
+import com.google.gson.Gson;
 import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 
@@ -125,8 +126,12 @@ public class _FeedResource implements FeedResource {
                             .accessJwt(request.getAccessJwt())
                             .repo(request.getDid())
                             .collection(BlueskyTypes.FeedPost)
-                            //.record(request.toPost())
+                            .record(request.toPost())
                             .build();
+
+            System.out.println(new Gson().toJson(request.toPost()));
+            System.out.println(">>>");
+            System.out.println(new Gson().toJson(record.getRecord()));
 
             return new HttpRequestBuilder()
                     .target(this.uri)

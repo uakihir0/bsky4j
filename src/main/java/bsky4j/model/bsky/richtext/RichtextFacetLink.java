@@ -5,9 +5,11 @@ package bsky4j.model.bsky.richtext;
  */
 public class RichtextFacetLink implements RichtextFacetFeatureUnion {
 
+    public static final String TYPE = "app.bsky.richtext.facet#link";
+
     @Override
     public String getType() {
-        return "app.bsky.richtext.facet#link";
+        return TYPE;
     }
 
     private String uri;

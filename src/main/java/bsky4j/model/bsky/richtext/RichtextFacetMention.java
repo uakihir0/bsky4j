@@ -5,9 +5,11 @@ package bsky4j.model.bsky.richtext;
  */
 public class RichtextFacetMention  implements RichtextFacetFeatureUnion {
 
+    public static final String TYPE = "app.bsky.richtext.facet#mention";
+
     @Override
     public String getType() {
-        return "app.bsky.richtext.facet#mention";
+        return TYPE;
     }
 
     private String did;

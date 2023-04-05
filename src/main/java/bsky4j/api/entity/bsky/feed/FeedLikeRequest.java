@@ -4,14 +4,14 @@ import bsky4j.api.entity.share.AuthRequest;
 import bsky4j.api.entity.share.MapRequest;
 import bsky4j.internal.share._InternalUtility;
 import bsky4j.model.atproto.repo.RepoStrongRef;
-import bsky4j.model.bsky.feed.FeedRepost;
+import bsky4j.model.bsky.feed.FeedLike;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FeedRepostRequest extends AuthRequest implements MapRequest {
-    FeedRepostRequest(String accessJwt) {
+public class FeedLikeRequest extends AuthRequest implements MapRequest {
+    FeedLikeRequest(String accessJwt) {
         super(accessJwt);
     }
 
@@ -26,18 +26,16 @@ public class FeedRepostRequest extends AuthRequest implements MapRequest {
         return map;
     }
 
-    public FeedRepost toRepost() {
-        FeedRepost repost = new FeedRepost();
-        repost.setSubject(getSubject());
-        repost.setCreatedAt(getCreatedAt());
-        return repost;
+    public FeedLike toLike() {
+        FeedLike like = new FeedLike();
+        like.setSubject(getSubject());
+        like.setCreatedAt(getCreatedAt());
+        return like;
     }
 
-    // region
-    public static FeedRepostRequestBuilder builder() {
-        return new FeedRepostRequestBuilder();
+    public static FeedLikeRequestBuilder builder() {
+        return new FeedLikeRequestBuilder();
     }
-
 
     public RepoStrongRef getSubject() {
         return subject;
@@ -50,35 +48,34 @@ public class FeedRepostRequest extends AuthRequest implements MapRequest {
         return createdAt;
     }
 
-    public static final class FeedRepostRequestBuilder {
+    public static final class FeedLikeRequestBuilder {
         private RepoStrongRef subject;
         private String createdAt;
         private String accessJwt;
 
-        private FeedRepostRequestBuilder() {
+        private FeedLikeRequestBuilder() {
         }
 
-        public FeedRepostRequestBuilder subject(RepoStrongRef subject) {
+        public FeedLikeRequestBuilder subject(RepoStrongRef subject) {
             this.subject = subject;
             return this;
         }
 
-        public FeedRepostRequestBuilder createdAt(String createdAt) {
+        public FeedLikeRequestBuilder createdAt(String createdAt) {
             this.createdAt = createdAt;
             return this;
         }
 
-        public FeedRepostRequestBuilder accessJwt(String accessJwt) {
+        public FeedLikeRequestBuilder accessJwt(String accessJwt) {
             this.accessJwt = accessJwt;
             return this;
         }
 
-        public FeedRepostRequest build() {
-            FeedRepostRequest feedRepostRequest = new FeedRepostRequest(accessJwt);
-            feedRepostRequest.createdAt = this.createdAt;
-            feedRepostRequest.subject = this.subject;
-            return feedRepostRequest;
+        public FeedLikeRequest build() {
+            FeedLikeRequest feedLikeRequest = new FeedLikeRequest(accessJwt);
+            feedLikeRequest.subject = this.subject;
+            feedLikeRequest.createdAt = this.createdAt;
+            return feedLikeRequest;
         }
     }
-    // endregion
 }

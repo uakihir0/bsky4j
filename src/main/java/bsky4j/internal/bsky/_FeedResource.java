@@ -14,12 +14,13 @@ import bsky4j.api.entity.bsky.feed.FeedGetRepostedByRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetRepostedByResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetTimelineRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetTimelineResponse;
+import bsky4j.api.entity.bsky.feed.FeedLikeRequest;
+import bsky4j.api.entity.bsky.feed.FeedLikeResponse;
 import bsky4j.api.entity.bsky.feed.FeedPostRequest;
 import bsky4j.api.entity.bsky.feed.FeedPostResponse;
 import bsky4j.api.entity.bsky.feed.FeedRepostRequest;
 import bsky4j.api.entity.bsky.feed.FeedRepostResponse;
 import bsky4j.api.entity.share.Response;
-import com.google.gson.Gson;
 import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 
@@ -114,10 +115,26 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<FeedPostResponse> like(FeedPostRequest request) {
-        return null;
-    }
+    public Response<FeedLikeResponse> like(FeedLikeRequest request) {
+        return proceed(FeedLikeResponse.class, () -> {
 
+            RepoCreateRecordRequest record =
+                    RepoCreateRecordRequest.builder()
+                            .accessJwt(request.getAccessJwt())
+                            .repo(request.getDid())
+                            .collection(BlueskyTypes.FeedLike)
+                            .record(request.toLike())
+                            .build();
+
+            return new HttpRequestBuilder()
+                    .target(this.uri)
+                    .path(ATProtocolTypes.RepoCreateRecord)
+                    .header("Authorization", request.getBearerToken())
+                    .request(HttpMediaType.APPLICATION_JSON)
+                    .json(record.toJson())
+                    .post();
+        });
+    }
 
     @Override
     public Response<FeedPostResponse> post(FeedPostRequest request) {

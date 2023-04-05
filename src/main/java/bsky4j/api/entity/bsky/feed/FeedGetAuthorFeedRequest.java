@@ -13,7 +13,7 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest 
         super(accessJwt);
     }
 
-    private String author;
+    private String actor;
     @Nullable
     private Integer limit;
     @Nullable
@@ -22,7 +22,7 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest 
     @Override
     public Map<String, Object> toMap() {
         HashMap<String, Object> map = new HashMap<>();
-        addParam(map, "author", getAuthor());
+        addParam(map, "actor", getActor());
         addParam(map, "limit", getLimit());
         addParam(map, "cursor", getCursor());
         return map;
@@ -33,8 +33,8 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest 
         return new FeedGetAuthorFeedRequestBuilder();
     }
 
-    public String getAuthor() {
-        return author;
+    public String getActor() {
+        return actor;
     }
 
     @Nullable
@@ -48,7 +48,7 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest 
     }
 
     public static final class FeedGetAuthorFeedRequestBuilder {
-        private String author;
+        private String actor;
         private Integer limit;
         private String cursor;
         private String accessJwt;
@@ -56,8 +56,8 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest 
         private FeedGetAuthorFeedRequestBuilder() {
         }
 
-        public FeedGetAuthorFeedRequestBuilder author(String author) {
-            this.author = author;
+        public FeedGetAuthorFeedRequestBuilder actor(String actor) {
+            this.actor = actor;
             return this;
         }
 
@@ -78,9 +78,9 @@ public class FeedGetAuthorFeedRequest extends AuthRequest implements MapRequest 
 
         public FeedGetAuthorFeedRequest build() {
             FeedGetAuthorFeedRequest feedGetAuthorFeedRequest = new FeedGetAuthorFeedRequest(accessJwt);
-            feedGetAuthorFeedRequest.limit = this.limit;
             feedGetAuthorFeedRequest.cursor = this.cursor;
-            feedGetAuthorFeedRequest.author = this.author;
+            feedGetAuthorFeedRequest.limit = this.limit;
+            feedGetAuthorFeedRequest.actor = this.actor;
             return feedGetAuthorFeedRequest;
         }
     }

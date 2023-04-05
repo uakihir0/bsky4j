@@ -16,6 +16,8 @@ import bsky4j.api.entity.bsky.feed.FeedGetTimelineRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetTimelineResponse;
 import bsky4j.api.entity.bsky.feed.FeedPostRequest;
 import bsky4j.api.entity.bsky.feed.FeedPostResponse;
+import bsky4j.api.entity.bsky.feed.FeedRepostRequest;
+import bsky4j.api.entity.bsky.feed.FeedRepostResponse;
 import bsky4j.api.entity.share.Response;
 import com.google.gson.Gson;
 import net.socialhub.http.HttpMediaType;
@@ -140,7 +142,24 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<FeedPostResponse> repost(FeedPostRequest request) {
-        return null;
+    public Response<FeedRepostResponse> repost(FeedRepostRequest request) {
+        return proceed(FeedRepostResponse.class, () -> {
+
+            RepoCreateRecordRequest record =
+                    RepoCreateRecordRequest.builder()
+                            .accessJwt(request.getAccessJwt())
+                            .repo(request.getDid())
+                            .collection(BlueskyTypes.FeedRepost)
+                            .record(request.toRepost())
+                            .build();
+
+            return new HttpRequestBuilder()
+                    .target(this.uri)
+                    .path(ATProtocolTypes.RepoCreateRecord)
+                    .header("Authorization", request.getBearerToken())
+                    .request(HttpMediaType.APPLICATION_JSON)
+                    .json(record.toJson())
+                    .post();
+        });
     }
 }

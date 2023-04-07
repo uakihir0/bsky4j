@@ -2,6 +2,9 @@ package bsky4j.internal.atproto;
 
 import bsky4j.ATProtocolTypes;
 import bsky4j.api.atproto.RepoResource;
+import bsky4j.api.entity.atproto.repo.RepoCreateRecordRequest;
+import bsky4j.api.entity.atproto.repo.RepoCreateRecordResponse;
+import bsky4j.api.entity.atproto.repo.RepoDeleteRecordRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobByFileRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobByStreamRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobRequest;
@@ -13,7 +16,7 @@ import net.socialhub.http.HttpRequestBuilder;
 
 import static bsky4j.internal.share._InternalUtility.proceed;
 
-public class _RepoResource  implements RepoResource {
+public class _RepoResource implements RepoResource {
 
     private final String uri;
 
@@ -28,13 +31,31 @@ public class _RepoResource  implements RepoResource {
     }
 
     @Override
-    public void createRecord() {
+    public Response<RepoCreateRecordResponse> createRecord(RepoCreateRecordRequest request) {
+        return proceed(RepoCreateRecordResponse.class, () -> {
 
+            return new HttpRequestBuilder()
+                    .target(this.uri)
+                    .path(ATProtocolTypes.RepoCreateRecord)
+                    .header("Authorization", request.getBearerToken())
+                    .request(HttpMediaType.APPLICATION_JSON)
+                    .json(request.toJson())
+                    .post();
+        });
     }
 
     @Override
-    public void deleteRecord() {
+    public Response<Void> deleteRecord(RepoDeleteRecordRequest request) {
+        return proceed(() -> {
 
+            return new HttpRequestBuilder()
+                    .target(this.uri)
+                    .path(ATProtocolTypes.RepoDeleteRecord)
+                    .header("Authorization", request.getBearerToken())
+                    .request(HttpMediaType.APPLICATION_JSON)
+                    .json(request.toJson())
+                    .post();
+        });
     }
 
     @Override

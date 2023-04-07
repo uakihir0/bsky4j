@@ -4,6 +4,8 @@ import bsky4j.ATProtocolTypes;
 import bsky4j.BlueskyTypes;
 import bsky4j.api.bsky.FeedResource;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordRequest;
+import bsky4j.api.entity.atproto.repo.RepoDeleteRecordRequest;
+import bsky4j.api.entity.bsky.feed.FeedDeleteLikeRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetLikesRequest;
@@ -129,6 +131,28 @@ public class _FeedResource implements FeedResource {
             return new HttpRequestBuilder()
                     .target(this.uri)
                     .path(ATProtocolTypes.RepoCreateRecord)
+                    .header("Authorization", request.getBearerToken())
+                    .request(HttpMediaType.APPLICATION_JSON)
+                    .json(record.toJson())
+                    .post();
+        });
+    }
+
+    @Override
+    public Response<Void> deleteLike(FeedDeleteLikeRequest request) {
+        return proceed(() -> {
+
+            RepoDeleteRecordRequest record =
+                    RepoDeleteRecordRequest.builder()
+                            .accessJwt(request.getAccessJwt())
+                            .repo(request.getDid())
+                            .collection(BlueskyTypes.FeedLike)
+                            .rkey(request.getRkey())
+                            .build();
+
+            return new HttpRequestBuilder()
+                    .target(this.uri)
+                    .path(ATProtocolTypes.RepoDeleteRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
                     .json(record.toJson())

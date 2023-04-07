@@ -1,5 +1,6 @@
 package bsky4j.api.bsky;
 
+import bsky4j.api.entity.bsky.feed.FeedDeleteLikeRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetLikesRequest;
@@ -54,6 +55,12 @@ public interface FeedResource {
      * (ATProtocol/Repo createRecord wrapper)
      */
     Response<FeedLikeResponse> like(FeedLikeRequest request);
+
+    /**
+     * Delete Like operation.
+     * (ATProtocol/Repo deleteRecord wrapper)
+     */
+    Response<Void> deleteLike(FeedDeleteLikeRequest request);
 
     /**
      * Post feed operation.

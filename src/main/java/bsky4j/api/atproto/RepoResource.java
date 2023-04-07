@@ -1,5 +1,8 @@
 package bsky4j.api.atproto;
 
+import bsky4j.api.entity.atproto.repo.RepoCreateRecordRequest;
+import bsky4j.api.entity.atproto.repo.RepoCreateRecordResponse;
+import bsky4j.api.entity.atproto.repo.RepoDeleteRecordRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobResponse;
 import bsky4j.api.entity.share.Response;
@@ -18,12 +21,12 @@ public interface RepoResource {
     /**
      * Create a new record.
      */
-    void createRecord();
+    Response<RepoCreateRecordResponse> createRecord(RepoCreateRecordRequest request);
 
     /**
      * Delete a record, or ensure it doesn't exist.
      */
-    void deleteRecord();
+    Response<Void> deleteRecord(RepoDeleteRecordRequest request);
 
     /**
      * Get information about the repo, including the list of collections.

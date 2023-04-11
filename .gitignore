@@ -3,5 +3,6 @@
 .gradle
 target/
 build/
-src/test/
 out/
+secrets.json
+jwt.txt

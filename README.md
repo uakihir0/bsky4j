@@ -27,7 +27,7 @@ Response<ServerCreateSessionResponse> response = BlueskyFactory
         .getInstance(Service.BSKY_SOCIAL.getUri())
         .server().createSession(
                 ServerCreateSessionRequest.builder()
-                        .handle("HANDLER")
+                        .identifier("HANDLE")
                         .password("PASSWORD")
                         .build()
         );

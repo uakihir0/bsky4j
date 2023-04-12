@@ -17,7 +17,7 @@ public class CreateSessionTest extends AbstractTest {
                 .getInstance(Service.BSKY_SOCIAL.getUri())
                 .server().createSession(
                         ServerCreateSessionRequest.builder()
-                                .handle(handle)
+                                .identifier(handle)
                                 .password(password)
                                 .build()
                 );

@@ -4,6 +4,7 @@ import bsky4j.ATProtocolFactory;
 import bsky4j.BlueskyFactory;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobResponse;
+import bsky4j.api.entity.bsky.feed.FeedDeletePostRequest;
 import bsky4j.api.entity.bsky.feed.FeedPostRequest;
 import bsky4j.api.entity.bsky.feed.FeedPostResponse;
 import bsky4j.api.entity.share.Response;
@@ -151,5 +152,34 @@ public class PostTest extends AbstractTest {
                 }).get();
 
         System.out.println(last.get().getUri());
+    }
+
+    @Test
+    public void testDeleteFeed() {
+        String uri;
+
+        { // Create
+            Response<FeedPostResponse> response = BlueskyFactory
+                    .getInstance(Service.BSKY_SOCIAL.getUri())
+                    .feed().post(
+                            FeedPostRequest.builder()
+                                    .accessJwt(accessJwt)
+                                    .text("テスト（すぐ消す）")
+                                    .build()
+                    );
+
+            uri = response.get().getUri();
+        }
+
+        { // Delete
+            BlueskyFactory
+                    .getInstance(Service.BSKY_SOCIAL.getUri())
+                    .feed().deletePost(
+                            FeedDeletePostRequest.builder()
+                                    .accessJwt(accessJwt)
+                                    .uri(uri)
+                                    .build()
+                    );
+        }
     }
 }

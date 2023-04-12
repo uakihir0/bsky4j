@@ -7,14 +7,12 @@ import java.util.Map;
 
 public class ServerCreateSessionRequest implements MapRequest {
 
-    private String handle;
     private String identifier;
     private String password;
 
     @Override
     public Map<String, Object> toMap() {
         HashMap<String, Object> map = new HashMap<>();
-        addParam(map, "handle", getHandle());
         addParam(map, "identifier", getIdentifier());
         addParam(map, "password", getPassword());
         return map;
@@ -23,10 +21,6 @@ public class ServerCreateSessionRequest implements MapRequest {
     // region
     public static ServerCreateSessionRequestBuilder builder() {
         return new ServerCreateSessionRequestBuilder();
-    }
-
-    public String getHandle() {
-        return handle;
     }
 
     public String getIdentifier() {
@@ -38,16 +32,10 @@ public class ServerCreateSessionRequest implements MapRequest {
     }
 
     public static final class ServerCreateSessionRequestBuilder {
-        private String handle;
         private String identifier;
         private String password;
 
         private ServerCreateSessionRequestBuilder() {
-        }
-
-        public ServerCreateSessionRequestBuilder handle(String handle) {
-            this.handle = handle;
-            return this;
         }
 
         public ServerCreateSessionRequestBuilder identifier(String identifier) {
@@ -64,7 +52,6 @@ public class ServerCreateSessionRequest implements MapRequest {
             ServerCreateSessionRequest sessionCreateRequest = new ServerCreateSessionRequest();
             sessionCreateRequest.identifier = this.identifier;
             sessionCreateRequest.password = this.password;
-            sessionCreateRequest.handle = this.handle;
             return sessionCreateRequest;
         }
     }

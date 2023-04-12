@@ -1,5 +1,6 @@
 package bsky4j;
 
+import bsky4j.model.bsky.actor.ActorDefsProfileView;
 import bsky4j.model.bsky.embed.EmbedImagesView;
 import bsky4j.model.bsky.embed.EmbedViewUnion;
 import bsky4j.model.bsky.feed.FeedDefsPostView;
@@ -58,7 +59,7 @@ public class AbstractTest {
     }
 
     public void print(FeedDefsPostView post) {
-        System.out.println("----------------------------------------------");
+        System.out.println("|POST|-----------------------------------------");
         System.out.println("URI> " + post.getUri());
         System.out.println("CID> " + post.getCid());
 
@@ -78,6 +79,12 @@ public class AbstractTest {
         }
     }
 
+    public void print(ActorDefsProfileView user) {
+        System.out.println("|USER|-----------------------------------------");
+        System.out.println("DID> " + user.getDid());
+        System.out.println("HANDLE> " + user.getHandle());
+        System.out.println("NAME> " + user.getDisplayName());
+    }
 
     /**
      * Read File

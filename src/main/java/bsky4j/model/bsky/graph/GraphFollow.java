@@ -1,25 +1,24 @@
-package bsky4j.model.bsky.feed;
+package bsky4j.model.bsky.graph;
 
 import bsky4j.BlueskyTypes;
-import bsky4j.model.atproto.repo.RepoStrongRef;
 import bsky4j.model.share.RecordUnion;
 
-public class FeedRepost implements RecordUnion {
+public class GraphFollow implements RecordUnion {
 
     @Override
     public String getType() {
-        return BlueskyTypes.FeedRepost;
+        return BlueskyTypes.GraphFollow;
     }
 
-    private RepoStrongRef subject;
+    private String subject;
     private String createdAt;
 
     // region
-    public RepoStrongRef getSubject() {
+    public String getSubject() {
         return subject;
     }
 
-    public void setSubject(RepoStrongRef subject) {
+    public void setSubject(String subject) {
         this.subject = subject;
     }
 

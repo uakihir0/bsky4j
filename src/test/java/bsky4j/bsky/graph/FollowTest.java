@@ -2,9 +2,6 @@ package bsky4j.bsky.graph;
 
 import bsky4j.AbstractTest;
 import bsky4j.BlueskyFactory;
-import bsky4j.api.entity.bsky.feed.FeedDeletePostRequest;
-import bsky4j.api.entity.bsky.feed.FeedRepostRequest;
-import bsky4j.api.entity.bsky.feed.FeedRepostResponse;
 import bsky4j.api.entity.bsky.graph.GraphDeleteFollowRequest;
 import bsky4j.api.entity.bsky.graph.GraphFollowRequest;
 import bsky4j.api.entity.bsky.graph.GraphFollowResponse;

@@ -5,10 +5,17 @@ import bsky4j.BlueskyTypes;
 import bsky4j.api.bsky.GraphResource;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordRequest;
 import bsky4j.api.entity.atproto.repo.RepoDeleteRecordRequest;
-import bsky4j.api.entity.bsky.feed.FeedPostResponse;
 import bsky4j.api.entity.bsky.graph.GraphDeleteFollowRequest;
 import bsky4j.api.entity.bsky.graph.GraphFollowRequest;
 import bsky4j.api.entity.bsky.graph.GraphFollowResponse;
+import bsky4j.api.entity.bsky.graph.GraphGetFollowersRequest;
+import bsky4j.api.entity.bsky.graph.GraphGetFollowersResponse;
+import bsky4j.api.entity.bsky.graph.GraphGetFollowsRequest;
+import bsky4j.api.entity.bsky.graph.GraphGetFollowsResponse;
+import bsky4j.api.entity.bsky.graph.GraphGetMutesRequest;
+import bsky4j.api.entity.bsky.graph.GraphGetMutesResponse;
+import bsky4j.api.entity.bsky.graph.GraphMuteActorRequest;
+import bsky4j.api.entity.bsky.graph.GraphUnmuteActorRequest;
 import bsky4j.api.entity.share.Response;
 import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
@@ -44,7 +51,8 @@ public class _GraphResource implements GraphResource {
                     .request(HttpMediaType.APPLICATION_JSON)
                     .json(record.toJson())
                     .post();
-        });    }
+        });
+    }
 
     @Override
     public Response<Void> deleteFollow(
@@ -66,6 +74,87 @@ public class _GraphResource implements GraphResource {
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
                     .json(record.toJson())
+                    .post();
+        });
+    }
+
+    @Override
+    public Response<GraphGetFollowersResponse> getFollowers(
+            GraphGetFollowersRequest request
+    ) {
+        return proceed(GraphGetFollowersResponse.class, () -> {
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(this.uri)
+                            .path(BlueskyTypes.GraphGetFollowers)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<GraphGetFollowsResponse> getFollows(
+            GraphGetFollowsRequest request
+    ) {
+        return proceed(GraphGetFollowsResponse.class, () -> {
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(this.uri)
+                            .path(BlueskyTypes.GraphGetFollows)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<GraphGetMutesResponse> getMutes(
+            GraphGetMutesRequest request
+    ) {
+        return proceed(GraphGetMutesResponse.class, () -> {
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(this.uri)
+                            .path(BlueskyTypes.GraphGetMutes)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<Void> muteActor(
+            GraphMuteActorRequest request
+    ) {
+        return proceed(() -> {
+            return new HttpRequestBuilder()
+                    .target(this.uri)
+                    .path(BlueskyTypes.GraphMuteActor)
+                    .header("Authorization", request.getBearerToken())
+                    .request(HttpMediaType.APPLICATION_JSON)
+                    .json(request.toJson())
+                    .post();
+        });
+    }
+
+    @Override
+    public Response<Void> unmuteActor(
+            GraphUnmuteActorRequest request
+    ) {
+        return proceed(() -> {
+            return new HttpRequestBuilder()
+                    .target(this.uri)
+                    .path(BlueskyTypes.GraphUnmuteActor)
+                    .header("Authorization", request.getBearerToken())
+                    .request(HttpMediaType.APPLICATION_JSON)
+                    .json(request.toJson())
                     .post();
         });
     }

@@ -2,8 +2,6 @@ package bsky4j.bsky.feed;
 
 import bsky4j.AbstractTest;
 import bsky4j.BlueskyFactory;
-import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetLikesRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetLikesResponse;
 import bsky4j.api.entity.share.Response;

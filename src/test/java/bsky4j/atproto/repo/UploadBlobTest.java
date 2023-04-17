@@ -1,10 +1,10 @@
 package bsky4j.atproto.repo;
 
 import bsky4j.ATProtocolFactory;
+import bsky4j.AbstractTest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobResponse;
 import bsky4j.api.entity.share.Response;
-import bsky4j.AbstractTest;
 import bsky4j.domain.Service;
 import org.junit.Test;
 

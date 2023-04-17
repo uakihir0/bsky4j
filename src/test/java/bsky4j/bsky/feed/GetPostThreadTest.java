@@ -1,10 +1,10 @@
 package bsky4j.bsky.feed;
 
+import bsky4j.AbstractTest;
 import bsky4j.BlueskyFactory;
 import bsky4j.api.entity.bsky.feed.FeedGetPostThreadRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetPostThreadResponse;
 import bsky4j.api.entity.share.Response;
-import bsky4j.AbstractTest;
 import bsky4j.domain.Service;
 import bsky4j.model.bsky.feed.FeedDefsThreadUnion;
 import bsky4j.model.bsky.feed.FeedDefsThreadViewPost;

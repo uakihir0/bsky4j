@@ -3,7 +3,6 @@ package bsky4j.api.entity.bsky.graph;
 import bsky4j.api.entity.share.AuthRequest;
 import bsky4j.api.entity.share.MapRequest;
 import bsky4j.internal.share._InternalUtility;
-import bsky4j.model.bsky.feed.FeedRepost;
 import bsky4j.model.bsky.graph.GraphFollow;
 
 import java.util.Date;

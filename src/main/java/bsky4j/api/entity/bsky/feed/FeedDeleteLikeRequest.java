@@ -1,7 +1,6 @@
 package bsky4j.api.entity.bsky.feed;
 
 import bsky4j.api.entity.share.AuthRequest;
-import bsky4j.api.entity.share.MapRequest;
 import bsky4j.util.ATUriParser;
 
 /**

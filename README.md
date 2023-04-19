@@ -32,7 +32,20 @@ Response<ServerCreateSessionResponse> response = BlueskyFactory
                         .build()
         );
 
-System.out.println(response.get().getAccessJwt());
+String accessJwt = response.get().getAccessJwt();
+```
+
+### SendFeed
+
+```java
+Response<FeedPostResponse> response = BlueskyFactory
+        .getInstance(Service.BSKY_SOCIAL.getUri())
+        .feed().post(
+                FeedPostRequest.builder()
+                        .accessJwt(accessJwt)
+                        .text("Hello World!!")
+                        .build()
+        );
 ```
 
 ## Author

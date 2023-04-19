@@ -3,7 +3,7 @@ package bsky4j.model.bsky.richtext;
 /**
  * A facet feature for actor mentions.
  */
-public class RichtextFacetMention  implements RichtextFacetFeatureUnion {
+public class RichtextFacetMention implements RichtextFacetFeatureUnion {
 
     public static final String TYPE = "app.bsky.richtext.facet#mention";
 

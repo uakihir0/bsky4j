@@ -6,9 +6,11 @@ import bsky4j.model.share.RecordUnion;
 
 public class FeedRepost implements RecordUnion {
 
+    public static final String TYPE = BlueskyTypes.FeedRepost;
+
     @Override
     public String getType() {
-        return BlueskyTypes.FeedRepost;
+        return TYPE;
     }
 
     private RepoStrongRef subject;

@@ -3,7 +3,7 @@ package bsky4j.api.entity.bsky.graph;
 import bsky4j.api.entity.share.AuthRequest;
 import bsky4j.util.ATUriParser;
 
-public class GraphDeleteFollowRequest  extends AuthRequest {
+public class GraphDeleteFollowRequest extends AuthRequest {
 
     protected GraphDeleteFollowRequest(String accessJwt) {
         super(accessJwt);

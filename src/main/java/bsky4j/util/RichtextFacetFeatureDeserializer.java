@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
-public class RichtextFacetFeatureDeserializer  implements JsonDeserializer<RichtextFacetFeatureUnion> {
+public class RichtextFacetFeatureDeserializer implements JsonDeserializer<RichtextFacetFeatureUnion> {
 
     @Override
     public RichtextFacetFeatureUnion deserialize(

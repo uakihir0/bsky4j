@@ -1,13 +1,16 @@
 package bsky4j.model.bsky.feed;
 
+import bsky4j.BlueskyTypes;
 import bsky4j.model.atproto.repo.RepoStrongRef;
 import bsky4j.model.share.RecordUnion;
 
 public class FeedLike implements RecordUnion {
 
+    public static final String TYPE = BlueskyTypes.FeedLike;
+
     @Override
     public String getType() {
-        return "app.bsky.feed.like";
+        return TYPE;
     }
 
     private RepoStrongRef subject;

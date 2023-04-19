@@ -1,6 +1,9 @@
 package bsky4j.util;
 
+import bsky4j.model.bsky.feed.FeedLike;
 import bsky4j.model.bsky.feed.FeedPost;
+import bsky4j.model.bsky.feed.FeedRepost;
+import bsky4j.model.bsky.graph.GraphFollow;
 import bsky4j.model.share.RecordUnion;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
@@ -26,6 +29,18 @@ public class RecordDeserializer implements JsonDeserializer<RecordUnion> {
         if (type != null) {
             if (type.getAsString().equals(FeedPost.TYPE)) {
                 return context.deserialize(obj, new TypeToken<FeedPost>() {
+                }.getType());
+            }
+            if (type.getAsString().equals(FeedLike.TYPE)) {
+                return context.deserialize(obj, new TypeToken<FeedLike>() {
+                }.getType());
+            }
+            if (type.getAsString().equals(FeedRepost.TYPE)) {
+                return context.deserialize(obj, new TypeToken<FeedRepost>() {
+                }.getType());
+            }
+            if (type.getAsString().equals(GraphFollow.TYPE)) {
+                return context.deserialize(obj, new TypeToken<GraphFollow>() {
                 }.getType());
             }
         }

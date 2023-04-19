@@ -2,7 +2,7 @@ package bsky4j.model.bsky.feed;
 
 import bsky4j.BlueskyTypes;
 
-public class FeedDefsNotFoundPost  implements FeedDefsThreadUnion {
+public class FeedDefsNotFoundPost implements FeedDefsThreadUnion {
 
     public static final String TYPE = BlueskyTypes.FeedDefs + "#notFoundPost";
 

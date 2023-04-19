@@ -58,6 +58,10 @@ public class AbstractTest {
         saveFile(accessJwt, "jwt.txt");
     }
 
+    public void print(RecordUnion record) {
+        System.out.println("TYPE> " + record.getType());
+    }
+
     public void print(FeedDefsPostView post) {
         System.out.println("|POST|-----------------------------------------");
         System.out.println("URI> " + post.getUri());

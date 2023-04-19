@@ -34,7 +34,7 @@ public class RepostTest extends AbstractTest {
     }
 
     @Test
-    public void testDeleteRepost(){
+    public void testDeleteRepost() {
         String repostUri;
 
         { // Create

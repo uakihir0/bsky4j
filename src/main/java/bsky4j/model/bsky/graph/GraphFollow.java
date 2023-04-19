@@ -5,9 +5,11 @@ import bsky4j.model.share.RecordUnion;
 
 public class GraphFollow implements RecordUnion {
 
+    public static final String TYPE = BlueskyTypes.GraphFollow;
+
     @Override
     public String getType() {
-        return BlueskyTypes.GraphFollow;
+        return TYPE;
     }
 
     private String subject;

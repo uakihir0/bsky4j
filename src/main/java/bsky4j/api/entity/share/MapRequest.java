@@ -24,6 +24,10 @@ public interface MapRequest {
                 map.put(key, value);
                 return;
             }
+            if (value instanceof Boolean) {
+                map.put(key, value);
+                return;
+            }
 
             String json = _InternalUtility.gson.toJson(value);
             map.put(key, _InternalUtility.gson.fromJson(json,

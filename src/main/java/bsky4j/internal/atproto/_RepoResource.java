@@ -1,14 +1,18 @@
 package bsky4j.internal.atproto;
 
 import bsky4j.ATProtocolTypes;
+import bsky4j.BlueskyTypes;
 import bsky4j.api.atproto.RepoResource;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordRequest;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordResponse;
 import bsky4j.api.entity.atproto.repo.RepoDeleteRecordRequest;
+import bsky4j.api.entity.atproto.repo.RepoListRecordsRequest;
+import bsky4j.api.entity.atproto.repo.RepoListRecordsResponse;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobByFileRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobByStreamRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobResponse;
+import bsky4j.api.entity.bsky.notification.NotificationListNotificationsResponse;
 import bsky4j.api.entity.share.Response;
 import bsky4j.util.Bsky4JClientConfiguration;
 import net.socialhub.http.HttpMediaType;
@@ -31,7 +35,9 @@ public class _RepoResource implements RepoResource {
     }
 
     @Override
-    public Response<RepoCreateRecordResponse> createRecord(RepoCreateRecordRequest request) {
+    public Response<RepoCreateRecordResponse> createRecord(
+            RepoCreateRecordRequest request
+    ) {
         return proceed(RepoCreateRecordResponse.class, () -> {
 
             return new HttpRequestBuilder()
@@ -45,7 +51,9 @@ public class _RepoResource implements RepoResource {
     }
 
     @Override
-    public Response<Void> deleteRecord(RepoDeleteRecordRequest request) {
+    public Response<Void> deleteRecord(
+            RepoDeleteRecordRequest request
+    ) {
         return proceed(() -> {
 
             return new HttpRequestBuilder()
@@ -69,8 +77,19 @@ public class _RepoResource implements RepoResource {
     }
 
     @Override
-    public void listRecords() {
+    public Response<RepoListRecordsResponse> listRecords(
+            RepoListRecordsRequest request
+    ) {
+        return proceed(RepoListRecordsResponse.class, () -> {
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(this.uri)
+                            .path(ATProtocolTypes.RepoListRecords)
+                            .request(HttpMediaType.APPLICATION_JSON);
 
+            request.toMap().forEach(builder::param);
+            return builder.get();
+        });
     }
 
     @Override
@@ -79,7 +98,9 @@ public class _RepoResource implements RepoResource {
     }
 
     @Override
-    public Response<RepoUploadBlobResponse> uploadBlob(RepoUploadBlobRequest request) {
+    public Response<RepoUploadBlobResponse> uploadBlob(
+            RepoUploadBlobRequest request
+    ) {
         return proceed(RepoUploadBlobResponse.class, () -> {
 
             HttpRequestBuilder builder =

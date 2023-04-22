@@ -1,8 +1,8 @@
-package bsky4j.util;
+package bsky4j.util.json;
 
-import bsky4j.model.bsky.richtext.RichtextFacetFeatureUnion;
-import bsky4j.model.bsky.richtext.RichtextFacetLink;
-import bsky4j.model.bsky.richtext.RichtextFacetMention;
+import bsky4j.model.bsky.embed.EmbedExternalView;
+import bsky4j.model.bsky.embed.EmbedImagesView;
+import bsky4j.model.bsky.embed.EmbedViewUnion;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -12,10 +12,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
-public class RichtextFacetFeatureDeserializer implements JsonDeserializer<RichtextFacetFeatureUnion> {
+public class EmbedViewDeserializer implements JsonDeserializer<EmbedViewUnion> {
 
     @Override
-    public RichtextFacetFeatureUnion deserialize(
+    public EmbedViewUnion deserialize(
             JsonElement json,
             Type typeOfT,
             JsonDeserializationContext context
@@ -25,17 +25,16 @@ public class RichtextFacetFeatureDeserializer implements JsonDeserializer<Richte
         JsonElement type = obj.get("$type");
 
         if (type != null) {
-            if (type.getAsString().equals(RichtextFacetLink.TYPE)) {
-                return context.deserialize(obj, new TypeToken<RichtextFacetLink>() {
+            if (type.getAsString().equals(EmbedImagesView.TYPE)) {
+                return context.deserialize(obj, new TypeToken<EmbedImagesView>() {
                 }.getType());
             }
 
-            if (type.getAsString().equals(RichtextFacetMention.TYPE)) {
-                return context.deserialize(obj, new TypeToken<RichtextFacetMention>() {
+            if (type.getAsString().equals(EmbedExternalView.TYPE)) {
+                return context.deserialize(obj, new TypeToken<EmbedExternalView>() {
                 }.getType());
             }
         }
         return null;
     }
 }
-

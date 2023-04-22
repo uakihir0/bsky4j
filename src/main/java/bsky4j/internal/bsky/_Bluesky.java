@@ -14,7 +14,6 @@ public class _Bluesky extends _ATProtocol implements Bluesky {
 
     protected final NotificationResource notification;
 
-
     public _Bluesky(String uri) {
         super(uri);
 

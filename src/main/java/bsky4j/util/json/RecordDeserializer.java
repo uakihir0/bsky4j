@@ -1,4 +1,4 @@
-package bsky4j.util;
+package bsky4j.util.json;
 
 import bsky4j.model.bsky.feed.FeedLike;
 import bsky4j.model.bsky.feed.FeedPost;

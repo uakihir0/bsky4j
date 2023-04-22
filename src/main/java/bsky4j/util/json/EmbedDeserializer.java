@@ -1,8 +1,9 @@
-package bsky4j.util;
+package bsky4j.util.json;
 
-import bsky4j.model.bsky.embed.EmbedExternalView;
-import bsky4j.model.bsky.embed.EmbedImagesView;
-import bsky4j.model.bsky.embed.EmbedViewUnion;
+import bsky4j.BlueskyTypes;
+import bsky4j.model.bsky.embed.EmbedExternal;
+import bsky4j.model.bsky.embed.EmbedImages;
+import bsky4j.model.bsky.embed.EmbedUnion;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
@@ -12,10 +13,10 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
-public class EmbedViewDeserializer implements JsonDeserializer<EmbedViewUnion> {
+public class EmbedDeserializer implements JsonDeserializer<EmbedUnion> {
 
     @Override
-    public EmbedViewUnion deserialize(
+    public EmbedUnion deserialize(
             JsonElement json,
             Type typeOfT,
             JsonDeserializationContext context
@@ -25,13 +26,13 @@ public class EmbedViewDeserializer implements JsonDeserializer<EmbedViewUnion> {
         JsonElement type = obj.get("$type");
 
         if (type != null) {
-            if (type.getAsString().equals(EmbedImagesView.TYPE)) {
-                return context.deserialize(obj, new TypeToken<EmbedImagesView>() {
+            if (type.getAsString().equals(BlueskyTypes.EmbedImages)) {
+                return context.deserialize(obj, new TypeToken<EmbedImages>() {
                 }.getType());
             }
 
-            if (type.getAsString().equals(EmbedExternalView.TYPE)) {
-                return context.deserialize(obj, new TypeToken<EmbedExternalView>() {
+            if (type.getAsString().equals(BlueskyTypes.EmbedExternal)) {
+                return context.deserialize(obj, new TypeToken<EmbedExternal>() {
                 }.getType());
             }
         }

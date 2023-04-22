@@ -3,6 +3,8 @@ package bsky4j.api.atproto;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordRequest;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordResponse;
 import bsky4j.api.entity.atproto.repo.RepoDeleteRecordRequest;
+import bsky4j.api.entity.atproto.repo.RepoGetRecordRequest;
+import bsky4j.api.entity.atproto.repo.RepoGetRecordResponse;
 import bsky4j.api.entity.atproto.repo.RepoListRecordsRequest;
 import bsky4j.api.entity.atproto.repo.RepoListRecordsResponse;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobRequest;
@@ -38,7 +40,7 @@ public interface RepoResource {
     /**
      * Get a record.
      */
-    void getRecord();
+    Response<RepoGetRecordResponse> getRecord(RepoGetRecordRequest request);
 
     /**
      * List a range of records in a collection.

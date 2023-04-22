@@ -6,6 +6,8 @@ import bsky4j.api.atproto.RepoResource;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordRequest;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordResponse;
 import bsky4j.api.entity.atproto.repo.RepoDeleteRecordRequest;
+import bsky4j.api.entity.atproto.repo.RepoGetRecordRequest;
+import bsky4j.api.entity.atproto.repo.RepoGetRecordResponse;
 import bsky4j.api.entity.atproto.repo.RepoListRecordsRequest;
 import bsky4j.api.entity.atproto.repo.RepoListRecordsResponse;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobByFileRequest;
@@ -72,8 +74,20 @@ public class _RepoResource implements RepoResource {
     }
 
     @Override
-    public void getRecord() {
+    public Response<RepoGetRecordResponse> getRecord(
+            RepoGetRecordRequest request
+    ) {
+        return proceed(RepoGetRecordResponse.class, () -> {
 
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(this.uri)
+                            .path(ATProtocolTypes.RepoGetRecord)
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
+            return builder.get();
+        });
     }
 
     @Override
@@ -81,6 +95,7 @@ public class _RepoResource implements RepoResource {
             RepoListRecordsRequest request
     ) {
         return proceed(RepoListRecordsResponse.class, () -> {
+
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
                             .target(this.uri)

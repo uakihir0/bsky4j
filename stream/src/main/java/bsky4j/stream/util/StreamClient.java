@@ -4,9 +4,20 @@ import bsky4j.stream.util.callback.ClosedCallback;
 import bsky4j.stream.util.callback.ErrorCallback;
 import bsky4j.stream.util.callback.EventCallback;
 import bsky4j.stream.util.callback.OpenedCallback;
+import co.nstant.in.cbor.CborDecoder;
+import co.nstant.in.cbor.model.Array;
+import co.nstant.in.cbor.model.ByteString;
+import co.nstant.in.cbor.model.DataItem;
+import co.nstant.in.cbor.model.Map;
+import com.google.gson.Gson;
+import io.ipfs.cid.Cid;
 import net.socialhub.logger.Logger;
 
+import javax.xml.bind.DatatypeConverter;
+import java.io.ByteArrayInputStream;
 import java.net.URI;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -77,7 +88,23 @@ public class StreamClient implements WebSocketListener {
 
     @Override
     public void onMessage(byte[] data) {
-        logger.debug(new String(data));
+
+        try {
+            ByteArrayInputStream bais = new ByteArrayInputStream(data);
+            List<DataItem> dataItems = new CborDecoder(bais).decode();
+            for (DataItem dataItem : dataItems) {
+
+                logger.debug(dataItem.getClass().getName());
+                logger.debug(dataItem.toString());
+
+                logger.debug(new Gson().toJson(flatting(dataItem)));
+
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -101,5 +128,43 @@ public class StreamClient implements WebSocketListener {
         if (errorCallback != null) {
             errorCallback.onError(error);
         }
+    }
+
+    private Object flatting(DataItem item) {
+        if (item instanceof Map) {
+            Map map = (Map) item;
+            java.util.Map<String, Object> result = new HashMap<>();
+
+            map.getKeys().forEach(key -> {
+                result.put(key.toString(), flatting(map.get(key)));
+            });
+            return result;
+        }
+
+        if (item instanceof Array) {
+            Array array = (Array) item;
+            java.util.List<Object> result = new java.util.ArrayList<>();
+
+            array.getDataItems().forEach(dataItem -> {
+                result.add(flatting(dataItem));
+            });
+            return result;
+        }
+
+        if (item instanceof ByteString) {
+            try {
+                ByteString byteString = (ByteString) item;
+                System.out.println(new String(byteString.getBytes()));
+
+                // CAR 形式できているので、それをデコードする
+                // なお Java のデコードライブラリはない
+
+                return byteString.getBytes();
+            } catch (Exception e) {
+                return item.toString();
+            }
+        }
+
+        return item.toString();
     }
 }

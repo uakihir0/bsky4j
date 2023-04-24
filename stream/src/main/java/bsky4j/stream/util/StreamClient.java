@@ -1,5 +1,9 @@
 package bsky4j.stream.util;
 
+import bsky4j.ATProtocol;
+import bsky4j.ATProtocolException;
+import bsky4j.api.entity.atproto.repo.RepoGetRecordRequest;
+import bsky4j.api.entity.atproto.repo.RepoGetRecordResponse;
 import bsky4j.stream.util.callback.ClosedCallback;
 import bsky4j.stream.util.callback.ErrorCallback;
 import bsky4j.stream.util.callback.EventCallback;
@@ -9,17 +13,16 @@ import co.nstant.in.cbor.model.Array;
 import co.nstant.in.cbor.model.ByteString;
 import co.nstant.in.cbor.model.DataItem;
 import co.nstant.in.cbor.model.Map;
-import com.google.gson.Gson;
-import io.ipfs.cid.Cid;
 import net.socialhub.logger.Logger;
 
-import javax.xml.bind.DatatypeConverter;
 import java.io.ByteArrayInputStream;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class StreamClient implements WebSocketListener {
 
@@ -27,7 +30,10 @@ public class StreamClient implements WebSocketListener {
 
     private final Timer timer = new Timer(false);
 
-    private WebSocketClient client;
+    private final ExecutorService pool;
+    private final ATProtocol atproto;
+    private final WebSocketClient client;
+
     private boolean isOpen = false;
 
     private EventCallback eventCallback;
@@ -35,12 +41,17 @@ public class StreamClient implements WebSocketListener {
     private ClosedCallback closedCallback;
     private ErrorCallback errorCallback;
 
-    public StreamClient(String uri) {
-
+    public StreamClient(
+            ATProtocol atproto,
+            String uri
+    ) {
         try {
-            client = new WebSocketClient(new URI(uri), this);
+            this.atproto = atproto;
+            this.pool = Executors.newCachedThreadPool();
+            this.client = new WebSocketClient(new URI(uri), this);
+
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new ATProtocolException(e);
         }
     }
 
@@ -59,9 +70,9 @@ public class StreamClient implements WebSocketListener {
 
     @Override
     public void onConnect() {
-        logger.debug("Opened connection.");
-        this.isOpen = true;
+        logger.debug("[Connection Opened]");
 
+        this.isOpen = true;
         if (openedCallback != null) {
             openedCallback.onOpened();
         }
@@ -73,7 +84,6 @@ public class StreamClient implements WebSocketListener {
                     timer.cancel();
                     return;
                 }
-                System.out.println("send ping");
                 client.sendPing();
             }
         };
@@ -83,25 +93,70 @@ public class StreamClient implements WebSocketListener {
 
     @Override
     public void onMessage(String message) {
-        logger.debug(message);
+        // ATProtocol always use binary message.
     }
 
     @Override
     public void onMessage(byte[] data) {
 
         try {
-            ByteArrayInputStream bais = new ByteArrayInputStream(data);
-            List<DataItem> dataItems = new CborDecoder(bais).decode();
+            ByteArrayInputStream b = new ByteArrayInputStream(data);
+            List<DataItem> dataItems = new CborDecoder(b).decode();
             for (DataItem dataItem : dataItems) {
+                Object object = flatting(dataItem);
 
-                logger.debug(dataItem.getClass().getName());
-                logger.debug(dataItem.toString());
+                if (object instanceof java.util.Map) {
 
-                logger.debug(new Gson().toJson(flatting(dataItem)));
+                    @SuppressWarnings("unchecked")
+                    java.util.Map<String, Object> map = (java.util.Map<String, Object>) object;
 
+                    // {"op":"1","t":"#commit"}
+                    // 上記のような形式のデータは使い方が分からないので無視
+                    if (map.containsKey("t")) {
+                        continue;
+                    }
+
+                    @SuppressWarnings("unchecked")
+                    List<java.util.Map<String, Object>> list = (List<java.util.Map<String, Object>>) map.get("ops");
+                    for (java.util.Map<String, Object> op : list) {
+
+                        // FIXME: 作成イベントのみ対象
+                        String action = (String) op.get("action");
+                        if (!action.equals("create")) {
+                            continue;
+                        }
+
+                        String repo = (String) map.get("repo");
+                        String path = (String) op.get("path");
+                        String[] elements = path.split("/");
+
+                        pool.submit(() -> {
+                            try {
+                                RepoGetRecordResponse response = atproto.repo()
+                                        .getRecord(RepoGetRecordRequest.builder()
+                                                .collection(elements[0])
+                                                .rkey(elements[1])
+                                                .repo(repo)
+                                                .build())
+                                        .get();
+
+                                if (eventCallback != null) {
+                                    eventCallback.onEvent(
+                                            response.getCid(),
+                                            response.getUri(),
+                                            response.getValue()
+                                    );
+                                }
+
+                            } catch (Exception e) {
+                                logger.debug("[Record Deleted?]"
+                                        + " repo: " + repo
+                                        + " path: " + path);
+                            }
+                        });
+                    }
+                }
             }
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -109,9 +164,11 @@ public class StreamClient implements WebSocketListener {
 
     @Override
     public void onDisconnect(int code, String reason) {
-        logger.debug("Connection closed, code: " + code + " reason: " + reason);
-        this.isOpen = false;
+        logger.debug("[Connection Closed]" +
+                " code: " + code +
+                " reason: " + reason);
 
+        this.isOpen = false;
         if (closedCallback != null) {
             closedCallback.onClosed(false);
         }
@@ -120,17 +177,18 @@ public class StreamClient implements WebSocketListener {
     @Override
     public void onError(Exception error) {
         if (error != null) {
-            logger.debug("Exception: " + error.getClass().getName()
-                    + " message: " + error.getMessage());
-            logger.debug("Trace: ", error);
+            logger.debug("[Connection Error]"
+                    + " exception: " + error.getClass().getName()
+                    + " message: " + error.getMessage()
+                    + " trace: ", error);
         }
-
         if (errorCallback != null) {
             errorCallback.onError(error);
         }
     }
 
     private Object flatting(DataItem item) {
+
         if (item instanceof Map) {
             Map map = (Map) item;
             java.util.Map<String, Object> result = new HashMap<>();
@@ -152,19 +210,30 @@ public class StreamClient implements WebSocketListener {
         }
 
         if (item instanceof ByteString) {
-            try {
-                ByteString byteString = (ByteString) item;
-                System.out.println(new String(byteString.getBytes()));
-
-                // CAR 形式できているので、それをデコードする
-                // なお Java のデコードライブラリはない
-
-                return byteString.getBytes();
-            } catch (Exception e) {
-                return item.toString();
-            }
+            // FIXME
+            // CAR is encoded in the above, so decode it
+            // but no Java library supports it.
+            return item;
         }
 
         return item.toString();
     }
+
+    // region
+    public void setEventCallback(EventCallback eventCallback) {
+        this.eventCallback = eventCallback;
+    }
+
+    public void setOpenedCallback(OpenedCallback openedCallback) {
+        this.openedCallback = openedCallback;
+    }
+
+    public void setClosedCallback(ClosedCallback closedCallback) {
+        this.closedCallback = closedCallback;
+    }
+
+    public void setErrorCallback(ErrorCallback errorCallback) {
+        this.errorCallback = errorCallback;
+    }
+    // endregion
 }

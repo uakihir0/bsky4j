@@ -1,6 +1,6 @@
 package bsky4j.stream.api.atproto;
 
-import bsky4j.api.entity.atproto.sync.SyncSubscribeReposRequest;
+import bsky4j.stream.api.entity.atproto.sync.SyncSubscribeReposRequest;
 import bsky4j.stream.util.StreamClient;
 
 

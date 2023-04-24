@@ -1,5 +1,7 @@
 package bsky4j.model.bsky.embed;
 
+import bsky4j.model.share.Blob;
+
 import javax.annotation.Nullable;
 
 public class EmbedExternalExternal {
@@ -8,7 +10,7 @@ public class EmbedExternalExternal {
     private String title;
     private String description;
     @Nullable
-    private String thumb;
+    private Blob thumb;
 
     // region
     public String getUri() {
@@ -36,11 +38,11 @@ public class EmbedExternalExternal {
     }
 
     @Nullable
-    public String getThumb() {
+    public Blob getThumb() {
         return thumb;
     }
 
-    public void setThumb(@Nullable String thumb) {
+    public void setThumb(@Nullable Blob thumb) {
         this.thumb = thumb;
     }
     // endregion

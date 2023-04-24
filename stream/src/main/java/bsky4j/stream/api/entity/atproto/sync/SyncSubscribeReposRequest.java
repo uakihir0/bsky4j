@@ -1,4 +1,4 @@
-package bsky4j.api.entity.atproto.sync;
+package bsky4j.stream.api.entity.atproto.sync;
 
 import bsky4j.api.entity.share.MapRequest;
 

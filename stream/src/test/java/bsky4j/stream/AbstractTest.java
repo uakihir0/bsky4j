@@ -58,8 +58,15 @@ public class AbstractTest {
         saveFile(accessJwt, "../jwt.txt");
     }
 
-    public void print(RecordUnion record) {
+    public void print(String url, RecordUnion record) {
+        System.out.println("|RECORD|-----------------------------------------");
+        System.out.println("URI> " + url);
         System.out.println("TYPE> " + record.getType());
+
+        if (record instanceof FeedPost) {
+            FeedPost feedMain = (FeedPost) record;
+            System.out.println("TEXT> " + feedMain.getText());
+        }
     }
 
     public void print(FeedDefsPostView post) {

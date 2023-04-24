@@ -1,7 +1,6 @@
 package bsky4j.internal.atproto;
 
 import bsky4j.ATProtocolTypes;
-import bsky4j.BlueskyTypes;
 import bsky4j.api.atproto.RepoResource;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordRequest;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordResponse;
@@ -14,7 +13,6 @@ import bsky4j.api.entity.atproto.repo.RepoUploadBlobByFileRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobByStreamRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobResponse;
-import bsky4j.api.entity.bsky.notification.NotificationListNotificationsResponse;
 import bsky4j.api.entity.share.Response;
 import bsky4j.util.Bsky4JClientConfiguration;
 import net.socialhub.http.HttpMediaType;

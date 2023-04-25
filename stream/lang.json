@@ -1,12 +1,13 @@
 {
-  "FRENCH": 12,
-  "ALBANIAN": 2,
-  "GERMAN": 2,
-  "KOREAN": 20,
-  "JAPANESE": 65,
-  "CHINESE": 1,
-  "SPANISH": 53,
-  "ENGLISH": 117,
-  "ITALIAN": 16,
-  "UNKNOWN": 18
+  "PORTUGUESE": 100,
+  "GERMAN": 10,
+  "FRENCH": 13,
+  "KOREAN": 14,
+  "ARABIC": 14,
+  "UNKNOWN": 11,
+  "JAPANESE": 56,
+  "SPANISH": 6,
+  "ENGLISH": 144,
+  "ALBANIAN": 3,
+  "ITALIAN": 4
 }

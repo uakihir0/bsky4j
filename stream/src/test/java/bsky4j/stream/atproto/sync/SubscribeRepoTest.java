@@ -33,6 +33,7 @@ public class SubscribeRepoTest extends AbstractTest {
                         Language.FRENCH,
                         Language.ITALIAN,
                         Language.SPANISH,
+                        Language.PORTUGUESE,
                         Language.ALBANIAN,
                         Language.ARABIC
                 )

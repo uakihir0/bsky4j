@@ -126,7 +126,7 @@ public class AbstractTest {
     /**
      * Save File
      */
-    private void saveFile(String str, String fileName) {
+    protected void saveFile(String str, String fileName) {
         try {
             FileWriter fw = new FileWriter(fileName);
             fw.write(str);

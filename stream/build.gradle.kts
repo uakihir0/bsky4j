@@ -22,6 +22,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.2")
     implementation("com.github.ipld:java-cid:1.3.1")
     implementation("co.nstant.in:cbor:0.9")
+    implementation("com.github.pemistahl:lingua:1.2.2")
 
     // Test
     testImplementation("junit:junit:4.13.2")

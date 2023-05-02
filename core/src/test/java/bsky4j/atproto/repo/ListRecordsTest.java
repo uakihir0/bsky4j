@@ -29,4 +29,38 @@ public class ListRecordsTest extends AbstractTest {
             print(record.getValue());
         });
     }
+
+    @Test
+    public void testListRecordBlocks() {
+
+        Response<RepoListRecordsResponse> response = BlueskyFactory
+                .getInstance(Service.BSKY_SOCIAL.getUri())
+                .repo().listRecords(
+                        RepoListRecordsRequest.builder()
+                                .collection(BlueskyTypes.GraphBlock)
+                                .repo(handle)
+                                .build()
+                );
+
+        response.get().getRecords().forEach(record -> {
+            print(record.getValue());
+        });
+    }
+
+    @Test
+    public void testListRecordLikes() {
+
+        Response<RepoListRecordsResponse> response = BlueskyFactory
+                .getInstance(Service.BSKY_SOCIAL.getUri())
+                .repo().listRecords(
+                        RepoListRecordsRequest.builder()
+                                .collection(BlueskyTypes.FeedLike)
+                                .repo(handle)
+                                .build()
+                );
+
+        response.get().getRecords().forEach(record -> {
+            print(record.getValue());
+        });
+    }
 }

@@ -38,6 +38,8 @@ public class BlueskyTypes {
     public static String GraphGetMutes = "app.bsky.graph.getMutes";
     public static String GraphMuteActor = "app.bsky.graph.muteActor";
     public static String GraphUnmuteActor = "app.bsky.graph.unmuteActor";
+    public static String GraphBlock = "app.bsky.graph.block";
+    public static String GraphGetBlocks = "app.bsky.graph.getBlocks";
 
     // Notification
     public static String NotificationGetUnreadCount = "app.bsky.notification.getUnreadCount";

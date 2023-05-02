@@ -1,8 +1,13 @@
 package bsky4j.api.bsky;
 
+import bsky4j.api.entity.bsky.graph.GraphBlockRequest;
+import bsky4j.api.entity.bsky.graph.GraphBlockResponse;
+import bsky4j.api.entity.bsky.graph.GraphDeleteBlockRequest;
 import bsky4j.api.entity.bsky.graph.GraphDeleteFollowRequest;
 import bsky4j.api.entity.bsky.graph.GraphFollowRequest;
 import bsky4j.api.entity.bsky.graph.GraphFollowResponse;
+import bsky4j.api.entity.bsky.graph.GraphGetBlocksRequest;
+import bsky4j.api.entity.bsky.graph.GraphGetBlocksResponse;
 import bsky4j.api.entity.bsky.graph.GraphGetFollowersRequest;
 import bsky4j.api.entity.bsky.graph.GraphGetFollowersResponse;
 import bsky4j.api.entity.bsky.graph.GraphGetFollowsRequest;
@@ -56,4 +61,20 @@ public interface GraphResource {
      */
     Response<Void> unmuteActor(GraphUnmuteActorRequest request);
 
+    /**
+     * Block operation.
+     * (ATProtocol/Repo createRecord wrapper)
+     */
+    Response<GraphBlockResponse> block(GraphBlockRequest request);
+
+    /**
+     * Delete Block operation.
+     * (ATProtocol/Repo deleteRecord wrapper)
+     */
+    Response<Void> deleteBlock(GraphDeleteBlockRequest request);
+
+    /**
+     * Who does the viewer mute?
+     */
+    Response<GraphGetBlocksResponse> getBlocks(GraphGetBlocksRequest request);
 }

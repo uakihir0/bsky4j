@@ -48,6 +48,10 @@ Response<FeedPostResponse> response = BlueskyFactory
         );
 ```
 
+### PLC Directory
+
+// https://plc.directory/did:plc:bwdof2anluuf5wmfy2upgulw
+
 ## Author
 
 * @uakihir0.bsky.social

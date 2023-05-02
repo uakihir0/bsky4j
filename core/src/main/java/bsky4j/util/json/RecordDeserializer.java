@@ -4,6 +4,7 @@ import bsky4j.model.bsky.actor.ActorProfile;
 import bsky4j.model.bsky.feed.FeedLike;
 import bsky4j.model.bsky.feed.FeedPost;
 import bsky4j.model.bsky.feed.FeedRepost;
+import bsky4j.model.bsky.graph.GraphBlock;
 import bsky4j.model.bsky.graph.GraphFollow;
 import bsky4j.model.share.RecordUnion;
 import com.google.gson.JsonDeserializationContext;
@@ -46,6 +47,10 @@ public class RecordDeserializer implements JsonDeserializer<RecordUnion> {
             }
             if (type.getAsString().equals(GraphFollow.TYPE)) {
                 return context.deserialize(obj, new TypeToken<GraphFollow>() {
+                }.getType());
+            }
+            if (type.getAsString().equals(GraphBlock.TYPE)) {
+                return context.deserialize(obj, new TypeToken<GraphBlock>() {
                 }.getType());
             }
         }

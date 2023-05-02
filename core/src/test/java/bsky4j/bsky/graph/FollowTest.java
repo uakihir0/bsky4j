@@ -13,7 +13,7 @@ public class FollowTest extends AbstractTest {
 
     @Test
     public void testFollow() {
-        String did = "did:plc:bwdof2anluuf5wmfy2upgulw";
+        String did = "did:plc:oc6vwdlmk2kqyida5i74d3p5";
         String uri;
 
         { // Follow

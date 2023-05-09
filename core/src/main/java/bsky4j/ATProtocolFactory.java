@@ -1,6 +1,6 @@
 package bsky4j;
 
-import bsky4j.internal.atproto._ATProtocol;
+import bsky4j.internal._ATProtocol;
 
 public class ATProtocolFactory {
 

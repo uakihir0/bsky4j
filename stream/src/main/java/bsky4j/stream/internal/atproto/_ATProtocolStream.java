@@ -1,7 +1,7 @@
 package bsky4j.stream.internal.atproto;
 
 import bsky4j.ATProtocol;
-import bsky4j.internal.atproto._ATProtocol;
+import bsky4j.internal._ATProtocol;
 import bsky4j.stream.ATProtocolStream;
 import bsky4j.stream.api.atproto.SyncResource;
 

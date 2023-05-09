@@ -31,7 +31,7 @@ public class _GraphResource implements GraphResource {
 
     private final String uri;
 
-    _GraphResource(String uri) {
+    public _GraphResource(String uri) {
         this.uri = uri;
     }
 

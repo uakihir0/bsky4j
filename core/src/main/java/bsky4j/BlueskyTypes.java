@@ -46,4 +46,6 @@ public class BlueskyTypes {
     public static String NotificationListNotifications = "app.bsky.notification.listNotifications";
     public static String NotificationUpdateSeen = "app.bsky.notification.updateSeen";
 
+    // Unspecced
+    public static String UnspeccedGetPopular = "app.bsky.unspecced.getPopular";
 }

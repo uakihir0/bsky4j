@@ -50,7 +50,11 @@ Response<FeedPostResponse> response = BlueskyFactory
 
 ### PLC Directory
 
+TODO
+
 // https://plc.directory/did:plc:bwdof2anluuf5wmfy2upgulw
+
+// https://plc.directory/did:plc:bwdof2anluuf5wmfy2upgulw/log
 
 ## Author
 

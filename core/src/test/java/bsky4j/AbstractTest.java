@@ -1,6 +1,7 @@
 package bsky4j;
 
 import bsky4j.model.bsky.actor.ActorDefsProfileView;
+import bsky4j.model.bsky.actor.ActorDefsProfileViewDetailed;
 import bsky4j.model.bsky.embed.EmbedImagesView;
 import bsky4j.model.bsky.embed.EmbedViewUnion;
 import bsky4j.model.bsky.feed.FeedDefsPostView;
@@ -88,6 +89,15 @@ public class AbstractTest {
         System.out.println("DID> " + user.getDid());
         System.out.println("HANDLE> " + user.getHandle());
         System.out.println("NAME> " + user.getDisplayName());
+    }
+
+    public void print(ActorDefsProfileViewDetailed user) {
+        System.out.println("|USER|-----------------------------------------");
+        System.out.println("DID> " + user.getDid());
+        System.out.println("HANDLE> " + user.getHandle());
+        System.out.println("NAME> " + user.getDisplayName());
+        System.out.println("FOLLOWS COUNT> " + user.getFollowsCount());
+        System.out.println("FOLLOWERS COUNT> " + user.getFollowersCount());
     }
 
     /**

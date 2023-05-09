@@ -34,12 +34,14 @@ public class _FeedResource implements FeedResource {
 
     private final String uri;
 
-    _FeedResource(String uri) {
+    public _FeedResource(String uri) {
         this.uri = uri;
     }
 
     @Override
-    public Response<FeedGetAuthorFeedResponse> getAuthorFeed(FeedGetAuthorFeedRequest request) {
+    public Response<FeedGetAuthorFeedResponse> getAuthorFeed(
+            FeedGetAuthorFeedRequest request
+    ) {
         return proceed(FeedGetAuthorFeedResponse.class, () -> {
 
             HttpRequestBuilder builder =
@@ -55,7 +57,9 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<FeedGetLikesResponse> getLikes(FeedGetLikesRequest request) {
+    public Response<FeedGetLikesResponse> getLikes(
+            FeedGetLikesRequest request
+    ) {
         return proceed(FeedGetLikesResponse.class, () -> {
 
             HttpRequestBuilder builder =
@@ -71,7 +75,9 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<FeedGetPostThreadResponse> getPostThread(FeedGetPostThreadRequest request) {
+    public Response<FeedGetPostThreadResponse> getPostThread(
+            FeedGetPostThreadRequest request
+    ) {
         return proceed(FeedGetPostThreadResponse.class, () -> {
 
             HttpRequestBuilder builder =
@@ -87,7 +93,9 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<FeedGetRepostedByResponse> getRepostedBy(FeedGetRepostedByRequest request) {
+    public Response<FeedGetRepostedByResponse> getRepostedBy(
+            FeedGetRepostedByRequest request
+    ) {
         return proceed(FeedGetRepostedByResponse.class, () -> {
 
             HttpRequestBuilder builder =
@@ -103,7 +111,9 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<FeedGetTimelineResponse> getTimeline(FeedGetTimelineRequest request) {
+    public Response<FeedGetTimelineResponse> getTimeline(
+            FeedGetTimelineRequest request
+    ) {
         return proceed(FeedGetTimelineResponse.class, () -> {
 
             HttpRequestBuilder builder =
@@ -119,7 +129,9 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<FeedLikeResponse> like(FeedLikeRequest request) {
+    public Response<FeedLikeResponse> like(
+            FeedLikeRequest request
+    ) {
         return proceed(FeedLikeResponse.class, () -> {
 
             RepoCreateRecordRequest record =
@@ -141,7 +153,9 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<Void> deleteLike(FeedDeleteLikeRequest request) {
+    public Response<Void> deleteLike(
+            FeedDeleteLikeRequest request
+    ) {
         return proceed(() -> {
 
             RepoDeleteRecordRequest record =
@@ -163,7 +177,9 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<FeedPostResponse> post(FeedPostRequest request) {
+    public Response<FeedPostResponse> post(
+            FeedPostRequest request
+    ) {
         return proceed(FeedPostResponse.class, () -> {
 
             RepoCreateRecordRequest record =
@@ -185,7 +201,9 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<Void> deletePost(FeedDeletePostRequest request) {
+    public Response<Void> deletePost(
+            FeedDeletePostRequest request
+    ) {
         return proceed(() -> {
 
             RepoDeleteRecordRequest record =
@@ -207,7 +225,9 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<FeedRepostResponse> repost(FeedRepostRequest request) {
+    public Response<FeedRepostResponse> repost(
+            FeedRepostRequest request
+    ) {
         return proceed(FeedRepostResponse.class, () -> {
 
             RepoCreateRecordRequest record =
@@ -229,7 +249,9 @@ public class _FeedResource implements FeedResource {
     }
 
     @Override
-    public Response<Void> deleteRepost(FeedDeleteRepostRequest request) {
+    public Response<Void> deleteRepost(
+            FeedDeleteRepostRequest request
+    ) {
         return proceed(() -> {
 
             RepoDeleteRecordRequest record =

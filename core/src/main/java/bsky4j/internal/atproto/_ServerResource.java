@@ -17,7 +17,7 @@ public class _ServerResource implements ServerResource {
 
     private final String uri;
 
-    _ServerResource(String uri) {
+    public _ServerResource(String uri) {
         this.uri = uri;
     }
 

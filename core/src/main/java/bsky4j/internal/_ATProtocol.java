@@ -1,8 +1,10 @@
-package bsky4j.internal.atproto;
+package bsky4j.internal;
 
 import bsky4j.ATProtocol;
 import bsky4j.api.atproto.RepoResource;
 import bsky4j.api.atproto.ServerResource;
+import bsky4j.internal.atproto._RepoResource;
+import bsky4j.internal.atproto._ServerResource;
 
 public class _ATProtocol implements ATProtocol {
 

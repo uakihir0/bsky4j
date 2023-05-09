@@ -24,7 +24,7 @@ public class _RepoResource implements RepoResource {
 
     private final String uri;
 
-    _RepoResource(String uri) {
+    public _RepoResource(String uri) {
         this.uri = uri;
     }
 

@@ -1,6 +1,6 @@
 package bsky4j;
 
-import bsky4j.internal.bsky._Bluesky;
+import bsky4j.internal._Bluesky;
 
 public class BlueskyFactory {
 

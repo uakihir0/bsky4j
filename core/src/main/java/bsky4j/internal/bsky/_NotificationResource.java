@@ -17,7 +17,7 @@ public class _NotificationResource implements NotificationResource {
 
     private final String uri;
 
-    _NotificationResource(String uri) {
+    public _NotificationResource(String uri) {
         this.uri = uri;
     }
 

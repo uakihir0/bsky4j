@@ -15,6 +15,7 @@ import bsky4j.util.json.RecordDeserializer;
 import bsky4j.util.json.RichtextFacetFeatureDeserializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import net.socialhub.http.HttpException;
 import net.socialhub.http.HttpRequestBuilder;
 import net.socialhub.http.HttpResponse;
@@ -75,6 +76,22 @@ public class _InternalUtility {
             if (response.getStatusCode() == HttpResponseCode.OK) {
                 Response<T> result = new Response<>();
                 result.set(gson.fromJson(response.asString(), clazz));
+                return result;
+            }
+
+            throw new ATProtocolException(null);
+
+        } catch (HttpException e) {
+            throw new ATProtocolException(e);
+        }
+    }
+
+    public static <T> Response<T> proceed(TypeToken<T> clazz, RequestInterface function) {
+        try {
+            HttpResponse response = function.proceed();
+            if (response.getStatusCode() == HttpResponseCode.OK) {
+                Response<T> result = new Response<>();
+                result.set(gson.fromJson(response.asString(), clazz.getType()));
                 return result;
             }
 

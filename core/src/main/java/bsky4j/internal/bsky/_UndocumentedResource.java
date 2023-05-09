@@ -2,7 +2,6 @@ package bsky4j.internal.bsky;
 
 import bsky4j.BlueskyTypes;
 import bsky4j.api.bsky.UndocumentedResource;
-import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
 import bsky4j.api.entity.bsky.undoc.UndocGetPopularRequest;
 import bsky4j.api.entity.bsky.undoc.UndocGetPopularResponse;
 import bsky4j.api.entity.bsky.undoc.UndocSearchFeedsRequest;

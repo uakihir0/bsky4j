@@ -4,7 +4,6 @@ import bsky4j.AbstractTest;
 import bsky4j.BlueskyFactory;
 import bsky4j.api.entity.bsky.graph.GraphBlockRequest;
 import bsky4j.api.entity.bsky.graph.GraphBlockResponse;
-import bsky4j.api.entity.bsky.graph.GraphDeleteBlockRequest;
 import bsky4j.api.entity.share.Response;
 import bsky4j.domain.Service;
 import org.junit.Test;

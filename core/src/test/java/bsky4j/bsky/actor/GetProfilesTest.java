@@ -2,8 +2,6 @@ package bsky4j.bsky.actor;
 
 import bsky4j.AbstractTest;
 import bsky4j.BlueskyFactory;
-import bsky4j.api.entity.bsky.actor.ActorGetProfileRequest;
-import bsky4j.api.entity.bsky.actor.ActorGetProfileResponse;
 import bsky4j.api.entity.bsky.actor.ActorGetProfilesRequest;
 import bsky4j.api.entity.bsky.actor.ActorGetProfilesResponse;
 import bsky4j.api.entity.share.Response;

@@ -4,8 +4,6 @@ import bsky4j.AbstractTest;
 import bsky4j.BlueskyFactory;
 import bsky4j.api.entity.bsky.graph.GraphGetBlocksRequest;
 import bsky4j.api.entity.bsky.graph.GraphGetBlocksResponse;
-import bsky4j.api.entity.bsky.graph.GraphGetFollowsRequest;
-import bsky4j.api.entity.bsky.graph.GraphGetFollowsResponse;
 import bsky4j.api.entity.share.Response;
 import bsky4j.domain.Service;
 import org.junit.Test;

@@ -4,8 +4,6 @@ import bsky4j.AbstractTest;
 import bsky4j.BlueskyFactory;
 import bsky4j.api.entity.bsky.actor.ActorGetProfileRequest;
 import bsky4j.api.entity.bsky.actor.ActorGetProfileResponse;
-import bsky4j.api.entity.bsky.undoc.UndocGetPopularRequest;
-import bsky4j.api.entity.bsky.undoc.UndocGetPopularResponse;
 import bsky4j.api.entity.share.Response;
 import bsky4j.domain.Service;
 import org.junit.Test;

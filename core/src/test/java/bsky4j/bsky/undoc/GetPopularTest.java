@@ -2,8 +2,6 @@ package bsky4j.bsky.undoc;
 
 import bsky4j.AbstractTest;
 import bsky4j.BlueskyFactory;
-import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
 import bsky4j.api.entity.bsky.undoc.UndocGetPopularRequest;
 import bsky4j.api.entity.bsky.undoc.UndocGetPopularResponse;
 import bsky4j.api.entity.share.Response;

@@ -18,7 +18,7 @@ public class GetAuthorFeedTest extends AbstractTest {
                 .feed().getAuthorFeed(
                         FeedGetAuthorFeedRequest.builder()
                                 .accessJwt(accessJwt)
-                                .actor("uakihir0.bsky.social")
+                                .actor("uakihir0.com")
                                 .build()
                 );
 

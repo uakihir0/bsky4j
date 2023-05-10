@@ -9,6 +9,8 @@ import bsky4j.api.entity.bsky.feed.FeedGetLikesRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetLikesResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetPostThreadRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetPostThreadResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetPostsRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetPostsResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetRepostedByRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetRepostedByResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetTimelineRequest;
@@ -41,6 +43,11 @@ public interface FeedResource {
      *
      */
     Response<FeedGetPostThreadResponse> getPostThread(FeedGetPostThreadRequest request);
+
+    /**
+     * A view of an actor's feed.
+     */
+    Response<FeedGetPostsResponse> getPosts(FeedGetPostsRequest request);
 
     /**
      *

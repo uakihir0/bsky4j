@@ -23,6 +23,7 @@ import net.socialhub.http.HttpResponseCode;
 
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.Map;
 
 /**
  * @author uakihir0
@@ -62,11 +63,10 @@ public class _InternalUtility {
             if (response.getStatusCode() == HttpResponseCode.OK) {
                 return new Response<>();
             }
-
             throw new ATProtocolException(null);
 
         } catch (HttpException e) {
-            throw new ATProtocolException(e);
+            throw handleError(e);
         }
     }
 
@@ -78,11 +78,10 @@ public class _InternalUtility {
                 result.set(gson.fromJson(response.asString(), clazz));
                 return result;
             }
-
             throw new ATProtocolException(null);
 
         } catch (HttpException e) {
-            throw new ATProtocolException(e);
+            throw handleError(e);
         }
     }
 
@@ -98,7 +97,7 @@ public class _InternalUtility {
             throw new ATProtocolException(null);
 
         } catch (HttpException e) {
-            throw new ATProtocolException(e);
+            throw handleError(e);
         }
     }
 
@@ -117,6 +116,23 @@ public class _InternalUtility {
             return URLEncoder.encode(str, "utf-8");
         } catch (Exception e) {
             return str;
+        }
+    }
+
+    static RuntimeException handleError(HttpException e) {
+        try {
+            String message = e.getResponse().asString();
+            Map<String, Object> error = gson.fromJson(message,
+                    new TypeToken<Map<String, Object>>() {
+                    }.getType());
+
+            ATProtocolException exception = new ATProtocolException(e);
+            exception.setErrorMessage(error.get("message").toString());
+            exception.setError(error.get("error").toString());
+            return exception;
+
+        } catch (Exception t) {
+            return new ATProtocolException(e);
         }
     }
 }

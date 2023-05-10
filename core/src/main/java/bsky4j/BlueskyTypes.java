@@ -25,6 +25,7 @@ public class BlueskyTypes {
     public static String FeedGetAuthorFeed = "app.bsky.feed.getAuthorFeed";
     public static String FeedGetLikes = "app.bsky.feed.getLikes";
     public static String FeedGetPostThread = "app.bsky.feed.getPostThread";
+    public static String FeedGetPosts = "app.bsky.feed.getPosts";
     public static String FeedGetRepostedBy = "app.bsky.feed.getRepostedBy";
     public static String FeedGetTimeline = "app.bsky.feed.getTimeline";
     public static String FeedLike = "app.bsky.feed.like";

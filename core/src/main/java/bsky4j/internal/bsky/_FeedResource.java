@@ -14,6 +14,8 @@ import bsky4j.api.entity.bsky.feed.FeedGetLikesRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetLikesResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetPostThreadRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetPostThreadResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetPostsRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetPostsResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetRepostedByRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetRepostedByResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetTimelineRequest;
@@ -88,6 +90,25 @@ public class _FeedResource implements FeedResource {
                             .request(HttpMediaType.APPLICATION_JSON);
 
             request.toMap().forEach(builder::param);
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<FeedGetPostsResponse> getPosts(
+            FeedGetPostsRequest request
+    ) {
+        return proceed(FeedGetPostsResponse.class, () -> {
+
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(this.uri)
+                            .path(BlueskyTypes.FeedGetPosts)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.getUris().forEach(u ->
+                    builder.param("uris", u));
             return builder.get();
         });
     }

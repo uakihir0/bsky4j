@@ -50,11 +50,12 @@ Response<FeedPostResponse> response = BlueskyFactory
 
 ### PLC Directory
 
-TODO
+```java
+Response<DIDDetails> response = PLCDirectoryFactory
+        .getInstance().getDIDDetails(did);
 
-// https://plc.directory/did:plc:bwdof2anluuf5wmfy2upgulw
-
-// https://plc.directory/did:plc:bwdof2anluuf5wmfy2upgulw/log
+System.out.println(response.get().getAlsoKnownAs().get(0));
+```
 
 ## Author
 

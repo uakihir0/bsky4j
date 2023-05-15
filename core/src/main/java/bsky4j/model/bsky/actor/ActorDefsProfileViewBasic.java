@@ -1,6 +1,9 @@
 package bsky4j.model.bsky.actor;
 
+import bsky4j.model.atproto.label.LabelDefsLabel;
+
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * A reference to an actor in the network.
@@ -15,6 +18,8 @@ public class ActorDefsProfileViewBasic {
     private String avatar;
     @Nullable
     private ActorDefsViewerState viewer;
+    @Nullable
+    private List<LabelDefsLabel> labels;
 
     // region
     public String getDid() {
@@ -58,6 +63,15 @@ public class ActorDefsProfileViewBasic {
 
     public void setViewer(@Nullable ActorDefsViewerState viewer) {
         this.viewer = viewer;
+    }
+
+    @Nullable
+    public List<LabelDefsLabel> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(@Nullable List<LabelDefsLabel> labels) {
+        this.labels = labels;
     }
     // endregion
 }

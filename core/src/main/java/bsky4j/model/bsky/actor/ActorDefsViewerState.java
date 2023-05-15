@@ -7,7 +7,14 @@ public class ActorDefsViewerState {
     @Nullable
     private Boolean muted;
     @Nullable
+    private Boolean blockedBy;
+    /** at-uri */
+    @Nullable
+    private String blocking;
+    /** at-uri */
+    @Nullable
     private String following;
+    /** at-uri */
     @Nullable
     private String followedBy;
 
@@ -19,6 +26,24 @@ public class ActorDefsViewerState {
 
     public void setMuted(@Nullable Boolean muted) {
         this.muted = muted;
+    }
+
+    @Nullable
+    public Boolean getBlockedBy() {
+        return blockedBy;
+    }
+
+    public void setBlockedBy(@Nullable Boolean blockedBy) {
+        this.blockedBy = blockedBy;
+    }
+
+    @Nullable
+    public String getBlocking() {
+        return blocking;
+    }
+
+    public void setBlocking(@Nullable String blocking) {
+        this.blocking = blocking;
     }
 
     @Nullable

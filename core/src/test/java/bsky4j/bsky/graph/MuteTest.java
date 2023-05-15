@@ -20,4 +20,18 @@ public class MuteTest extends AbstractTest {
                                 .build()
                 );
     }
+
+    @Test
+    public void testMuteByDID() {
+        String did = "did:plc:oc6vwdlmk2kqyida5i74d3p5";
+
+        BlueskyFactory
+                .getInstance(Service.BSKY_SOCIAL.getUri())
+                .graph().muteActor(
+                        GraphMuteActorRequest.builder()
+                                .accessJwt(accessJwt)
+                                .actor(did)
+                                .build()
+                );
+    }
 }

@@ -27,6 +27,7 @@ public class FollowTest extends AbstractTest {
                     );
 
             uri = response.get().getUri();
+            System.out.println(uri);
         }
 
         { // DeleteFollow

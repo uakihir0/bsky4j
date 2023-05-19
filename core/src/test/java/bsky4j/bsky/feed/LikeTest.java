@@ -17,10 +17,7 @@ public class LikeTest extends AbstractTest {
         String uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jsmlerb7m22b";
         String cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu";
 
-        RepoStrongRef ref = new RepoStrongRef();
-        ref.setUri(uri);
-        ref.setCid(cid);
-
+        RepoStrongRef ref = new RepoStrongRef(uri, cid);
         Response<FeedLikeResponse> response = BlueskyFactory
                 .getInstance(Service.BSKY_SOCIAL.getUri())
                 .feed().like(
@@ -41,10 +38,7 @@ public class LikeTest extends AbstractTest {
             String uri = "at://did:plc:bwdof2anluuf5wmfy2upgulw/app.bsky.feed.post/3jsmlerb7m22b";
             String cid = "bafyreied4repnphzjbz5lu5syibtnp72omdecpyde2yykpfjppgp32zopu";
 
-            RepoStrongRef ref = new RepoStrongRef();
-            ref.setUri(uri);
-            ref.setCid(cid);
-
+            RepoStrongRef ref = new RepoStrongRef(uri, cid);
             Response<FeedLikeResponse> response = BlueskyFactory
                     .getInstance(Service.BSKY_SOCIAL.getUri())
                     .feed().like(

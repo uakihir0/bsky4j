@@ -100,13 +100,15 @@ public class PostTest extends AbstractTest {
         Response<FeedPostResponse> parent =
                 ((Supplier<Response<FeedPostResponse>>) () -> {
 
-                    RepoStrongRef rootRef = new RepoStrongRef();
-                    rootRef.setCid(root.get().getCid());
-                    rootRef.setUri(root.get().getUri());
+                    RepoStrongRef rootRef = new RepoStrongRef(
+                            root.get().getUri(),
+                            root.get().getCid()
+                    );
 
-                    RepoStrongRef parentRef = new RepoStrongRef();
-                    parentRef.setCid(root.get().getCid());
-                    parentRef.setUri(root.get().getUri());
+                    RepoStrongRef parentRef = new RepoStrongRef(
+                            root.get().getUri(),
+                            root.get().getCid()
+                    );
 
                     FeedPostReplyRef reply = new FeedPostReplyRef();
                     reply.setParent(parentRef);
@@ -128,13 +130,14 @@ public class PostTest extends AbstractTest {
         Response<FeedPostResponse> last =
                 ((Supplier<Response<FeedPostResponse>>) () -> {
 
-                    RepoStrongRef rootRef = new RepoStrongRef();
-                    rootRef.setCid(parent.get().getCid());
-                    rootRef.setUri(parent.get().getUri());
-
-                    RepoStrongRef parentRef = new RepoStrongRef();
-                    parentRef.setCid(parent.get().getCid());
-                    parentRef.setUri(parent.get().getUri());
+                    RepoStrongRef rootRef = new RepoStrongRef(
+                            parent.get().getUri(),
+                            parent.get().getCid()
+                    );
+                    RepoStrongRef parentRef = new RepoStrongRef(
+                            parent.get().getUri(),
+                            parent.get().getCid()
+                    );
 
                     FeedPostReplyRef reply = new FeedPostReplyRef();
                     reply.setParent(parentRef);

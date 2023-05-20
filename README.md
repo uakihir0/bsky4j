@@ -59,7 +59,7 @@ System.out.println(response.get().getAlsoKnownAs().get(0));
 
 ## Author
 
-* @uakihir0.bsky.social
+* [@uakihir0.com](https://bsky.app/profile/uakihir0.com)
 * [Twitter:@uakihir0](https://twitter.com/uakihir0)
 
 

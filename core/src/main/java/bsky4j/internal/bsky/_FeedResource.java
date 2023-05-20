@@ -31,6 +31,7 @@ import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 
 import static bsky4j.internal.share._InternalUtility.proceed;
+import static bsky4j.internal.share._InternalUtility.xrpc;
 
 public class _FeedResource implements FeedResource {
 
@@ -48,7 +49,7 @@ public class _FeedResource implements FeedResource {
 
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.FeedGetAuthorFeed)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
@@ -66,7 +67,7 @@ public class _FeedResource implements FeedResource {
 
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.FeedGetLikes)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
@@ -84,7 +85,7 @@ public class _FeedResource implements FeedResource {
 
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.FeedGetPostThread)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
@@ -102,7 +103,7 @@ public class _FeedResource implements FeedResource {
 
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.FeedGetPosts)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
@@ -121,7 +122,7 @@ public class _FeedResource implements FeedResource {
 
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.FeedGetRepostedBy)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
@@ -139,7 +140,7 @@ public class _FeedResource implements FeedResource {
 
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.FeedGetTimeline)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
@@ -164,7 +165,7 @@ public class _FeedResource implements FeedResource {
                             .build();
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoCreateRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -188,7 +189,7 @@ public class _FeedResource implements FeedResource {
                             .build();
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoDeleteRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -212,7 +213,7 @@ public class _FeedResource implements FeedResource {
                             .build();
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoCreateRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -236,7 +237,7 @@ public class _FeedResource implements FeedResource {
                             .build();
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoDeleteRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -260,7 +261,7 @@ public class _FeedResource implements FeedResource {
                             .build();
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoCreateRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -284,7 +285,7 @@ public class _FeedResource implements FeedResource {
                             .build();
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoDeleteRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)

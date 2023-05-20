@@ -26,6 +26,7 @@ import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 
 import static bsky4j.internal.share._InternalUtility.proceed;
+import static bsky4j.internal.share._InternalUtility.xrpc;
 
 public class _GraphResource implements GraphResource {
 
@@ -50,7 +51,7 @@ public class _GraphResource implements GraphResource {
                             .build();
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoCreateRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -74,7 +75,7 @@ public class _GraphResource implements GraphResource {
                             .build();
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoDeleteRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -90,7 +91,7 @@ public class _GraphResource implements GraphResource {
         return proceed(GraphGetFollowersResponse.class, () -> {
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.GraphGetFollowers)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
@@ -107,7 +108,7 @@ public class _GraphResource implements GraphResource {
         return proceed(GraphGetFollowsResponse.class, () -> {
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.GraphGetFollows)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
@@ -124,7 +125,7 @@ public class _GraphResource implements GraphResource {
         return proceed(GraphGetMutesResponse.class, () -> {
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.GraphGetMutes)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
@@ -140,7 +141,7 @@ public class _GraphResource implements GraphResource {
     ) {
         return proceed(() -> {
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(BlueskyTypes.GraphMuteActor)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -155,7 +156,7 @@ public class _GraphResource implements GraphResource {
     ) {
         return proceed(() -> {
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(BlueskyTypes.GraphUnmuteActor)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -179,7 +180,7 @@ public class _GraphResource implements GraphResource {
                             .build();
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoCreateRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -203,7 +204,7 @@ public class _GraphResource implements GraphResource {
                             .build();
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoDeleteRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -219,7 +220,7 @@ public class _GraphResource implements GraphResource {
         return proceed(GraphGetBlocksResponse.class, () -> {
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.GraphGetBlocks)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);

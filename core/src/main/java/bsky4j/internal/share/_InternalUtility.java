@@ -17,11 +17,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import net.socialhub.http.HttpException;
-import net.socialhub.http.HttpRequestBuilder;
 import net.socialhub.http.HttpResponse;
 import net.socialhub.http.HttpResponseCode;
 
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
@@ -105,18 +103,13 @@ public class _InternalUtility {
         HttpResponse proceed() throws HttpException;
     }
 
-    static void addParam(HttpRequestBuilder builder, String key, Object value) {
-        if (value != null) {
-            builder.param(key, value.toString());
+    public static String xrpc(String uri) {
+        StringBuilder builder = new StringBuilder(uri);
+        if (!uri.endsWith("/")) {
+            builder.append("/");
         }
-    }
-
-    static String encode(String str) {
-        try {
-            return URLEncoder.encode(str, "utf-8");
-        } catch (Exception e) {
-            return str;
-        }
+        builder.append("xrpc/");
+        return builder.toString();
     }
 
     static RuntimeException handleError(HttpException e) {

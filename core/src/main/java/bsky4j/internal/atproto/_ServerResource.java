@@ -12,6 +12,7 @@ import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 
 import static bsky4j.internal.share._InternalUtility.proceed;
+import static bsky4j.internal.share._InternalUtility.xrpc;
 
 public class _ServerResource implements ServerResource {
 
@@ -23,12 +24,12 @@ public class _ServerResource implements ServerResource {
 
     @Override
     public void createAccount() {
-
+        throw new IllegalStateException("not implemented.");
     }
 
     @Override
     public void createInviteCode() {
-
+        throw new IllegalStateException("not implemented.");
     }
 
     @Override
@@ -36,7 +37,7 @@ public class _ServerResource implements ServerResource {
         return proceed(ServerCreateSessionResponse.class, () -> {
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.ServerCreateSession)
                     .request(HttpMediaType.APPLICATION_JSON)
                     .json(request.toJson())
@@ -46,7 +47,7 @@ public class _ServerResource implements ServerResource {
 
     @Override
     public void deleteAccount() {
-
+        throw new IllegalStateException("not implemented.");
     }
 
     @Override
@@ -54,7 +55,7 @@ public class _ServerResource implements ServerResource {
         return proceed(() -> {
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.ServerDeleteSession)
                     .request(HttpMediaType.APPLICATION_JSON)
                     .header("Authorization", request.getBearerToken())
@@ -64,7 +65,7 @@ public class _ServerResource implements ServerResource {
 
     @Override
     public void describeServer() {
-
+        throw new IllegalStateException("not implemented.");
     }
 
     @Override
@@ -72,7 +73,7 @@ public class _ServerResource implements ServerResource {
         return proceed(ServerGetSessionResponse.class, () -> {
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.ServerGetSession)
                     .request(HttpMediaType.APPLICATION_JSON)
                     .header("Authorization", request.getBearerToken())
@@ -85,7 +86,7 @@ public class _ServerResource implements ServerResource {
         return proceed(ServerRefreshSessionResponse.class, () -> {
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.ServerRefreshSession)
                     .request(HttpMediaType.APPLICATION_JSON)
                     .header("Authorization", request.getBearerToken())
@@ -95,17 +96,17 @@ public class _ServerResource implements ServerResource {
 
     @Override
     public void requestAccountDelete() {
-
+        throw new IllegalStateException("not implemented.");
     }
 
     @Override
     public void requestPasswordReset() {
-
+        throw new IllegalStateException("not implemented.");
     }
 
     @Override
     public void resetPassword() {
-
+        throw new IllegalStateException("not implemented.");
     }
 }
 

@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.List;
 
 import static bsky4j.internal.share._InternalUtility.proceed;
+import static bsky4j.internal.share._InternalUtility.xrpc;
 
 public class _UndocumentedResource implements UndocumentedResource {
 
@@ -61,7 +62,7 @@ public class _UndocumentedResource implements UndocumentedResource {
 
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.UnspeccedGetPopular)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);

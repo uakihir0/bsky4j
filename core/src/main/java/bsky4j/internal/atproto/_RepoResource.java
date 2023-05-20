@@ -19,6 +19,7 @@ import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 
 import static bsky4j.internal.share._InternalUtility.proceed;
+import static bsky4j.internal.share._InternalUtility.xrpc;
 
 public class _RepoResource implements RepoResource {
 
@@ -31,7 +32,7 @@ public class _RepoResource implements RepoResource {
 
     @Override
     public void applyWrites() {
-
+        throw new IllegalStateException("not implemented.");
     }
 
     @Override
@@ -41,7 +42,7 @@ public class _RepoResource implements RepoResource {
         return proceed(RepoCreateRecordResponse.class, () -> {
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoCreateRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -57,7 +58,7 @@ public class _RepoResource implements RepoResource {
         return proceed(() -> {
 
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(ATProtocolTypes.RepoDeleteRecord)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -68,7 +69,7 @@ public class _RepoResource implements RepoResource {
 
     @Override
     public void describeRepo() {
-
+        throw new IllegalStateException("not implemented.");
     }
 
     @Override
@@ -79,7 +80,7 @@ public class _RepoResource implements RepoResource {
 
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(ATProtocolTypes.RepoGetRecord)
                             .request(HttpMediaType.APPLICATION_JSON);
 
@@ -96,7 +97,7 @@ public class _RepoResource implements RepoResource {
 
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(ATProtocolTypes.RepoListRecords)
                             .request(HttpMediaType.APPLICATION_JSON);
 
@@ -107,7 +108,7 @@ public class _RepoResource implements RepoResource {
 
     @Override
     public void putRecord() {
-
+        throw new IllegalStateException("not implemented.");
     }
 
     @Override
@@ -118,7 +119,7 @@ public class _RepoResource implements RepoResource {
 
             HttpRequestBuilder builder =
                     new HttpRequestBuilder(new Bsky4JClientConfiguration())
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(ATProtocolTypes.RepoUploadBlob);
 
             // From file

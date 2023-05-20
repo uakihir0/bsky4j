@@ -1,7 +1,7 @@
 package bsky4j.domain;
 
 public enum Service {
-    BSKY_SOCIAL("https://bsky.social/xrpc/"),
+    BSKY_SOCIAL("https://bsky.social/"),
     ;
 
     private final String uri;

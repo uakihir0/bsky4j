@@ -12,6 +12,7 @@ import net.socialhub.http.HttpMediaType;
 import net.socialhub.http.HttpRequestBuilder;
 
 import static bsky4j.internal.share._InternalUtility.proceed;
+import static bsky4j.internal.share._InternalUtility.xrpc;
 
 public class _NotificationResource implements NotificationResource {
 
@@ -27,7 +28,7 @@ public class _NotificationResource implements NotificationResource {
     ) {
         return proceed(NotificationGetUnreadCountResponse.class, () -> {
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(BlueskyTypes.NotificationGetUnreadCount)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)
@@ -42,7 +43,7 @@ public class _NotificationResource implements NotificationResource {
         return proceed(NotificationListNotificationsResponse.class, () -> {
             HttpRequestBuilder builder =
                     new HttpRequestBuilder()
-                            .target(this.uri)
+                            .target(xrpc(this.uri))
                             .path(BlueskyTypes.NotificationListNotifications)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
@@ -58,7 +59,7 @@ public class _NotificationResource implements NotificationResource {
     ) {
         return proceed(() -> {
             return new HttpRequestBuilder()
-                    .target(this.uri)
+                    .target(xrpc(this.uri))
                     .path(BlueskyTypes.NotificationUpdateSeen)
                     .header("Authorization", request.getBearerToken())
                     .request(HttpMediaType.APPLICATION_JSON)

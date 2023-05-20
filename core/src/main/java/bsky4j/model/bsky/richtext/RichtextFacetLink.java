@@ -1,15 +1,19 @@
 package bsky4j.model.bsky.richtext;
 
+import bsky4j.BlueskyTypes;
+import com.google.gson.annotations.SerializedName;
+
 /**
  * A facet feature for links.
  */
 public class RichtextFacetLink implements RichtextFacetFeatureUnion {
 
-    public static final String TYPE = "app.bsky.richtext.facet#link";
+    @SerializedName("$type")
+    public final String type = BlueskyTypes.RichtextFacet + "#link";
 
     @Override
     public String getType() {
-        return TYPE;
+        return type;
     }
 
     private String uri;

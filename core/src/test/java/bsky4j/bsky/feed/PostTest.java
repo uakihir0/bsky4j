@@ -3,6 +3,8 @@ package bsky4j.bsky.feed;
 import bsky4j.ATProtocolFactory;
 import bsky4j.AbstractTest;
 import bsky4j.BlueskyFactory;
+import bsky4j.api.entity.atproto.identity.IdentityResolveHandleRequest;
+import bsky4j.api.entity.atproto.identity.IdentityResolveHandleResponse;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobRequest;
 import bsky4j.api.entity.atproto.repo.RepoUploadBlobResponse;
 import bsky4j.api.entity.bsky.feed.FeedDeletePostRequest;
@@ -14,13 +16,21 @@ import bsky4j.model.atproto.repo.RepoStrongRef;
 import bsky4j.model.bsky.embed.EmbedImages;
 import bsky4j.model.bsky.embed.EmbedImagesImage;
 import bsky4j.model.bsky.feed.FeedPostReplyRef;
+import bsky4j.model.bsky.richtext.RichtextFacet;
+import bsky4j.util.facet.FacetList;
+import bsky4j.util.facet.FacetRecord;
+import bsky4j.util.facet.FacetType;
+import bsky4j.util.facet.FacetUtil;
 import com.google.gson.Gson;
 import org.junit.Test;
 
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 public class PostTest extends AbstractTest {
 
@@ -155,6 +165,43 @@ public class PostTest extends AbstractTest {
                 }).get();
 
         System.out.println(last.get().getUri());
+    }
+
+
+    @Test
+    public void testPostWithFacets() {
+        String test = "@uakihir0.com Facet のテスト投稿 https://www.uakihir0.com/blog/p/202305-mario-movie/";
+        FacetList list = FacetUtil.extractFacets(test);
+
+        List<String> handles = list.getRecords().stream()
+                .filter(i -> i.getType() == FacetType.Mention)
+                .map(FacetRecord::getDisplayText)
+                .collect(Collectors.toList());
+
+        Map<String, String> handleToDidMap = new HashMap<>();
+
+        for (String handle : handles) {
+            Response<IdentityResolveHandleResponse> response = BlueskyFactory
+                    .getInstance(Service.BSKY_SOCIAL.getUri())
+                    .identity().resolveHandle(
+                            IdentityResolveHandleRequest.builder()
+                                    .handle(handle.substring(1))
+                                    .build()
+                    );
+            handleToDidMap.put(handle, response.get().getDid());
+        }
+
+        List<RichtextFacet> facets = list.getRichTextFacets(handleToDidMap);
+
+        BlueskyFactory
+                .getInstance(Service.BSKY_SOCIAL.getUri())
+                .feed().post(
+                        FeedPostRequest.builder()
+                                .accessJwt(accessJwt)
+                                .facets(facets)
+                                .text(list.getDisplayText())
+                                .build()
+                );
     }
 
     @Test

@@ -13,6 +13,7 @@ import bsky4j.util.json.EmbedViewDeserializer;
 import bsky4j.util.json.FeedDefsThreadDeserializer;
 import bsky4j.util.json.RecordDeserializer;
 import bsky4j.util.json.RichtextFacetFeatureDeserializer;
+import bsky4j.util.json.RichtextFacetFeatureSerializer;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -47,6 +48,9 @@ public class _InternalUtility {
             .registerTypeAdapter(
                     RichtextFacetFeatureUnion.class,
                     new RichtextFacetFeatureDeserializer())
+            .registerTypeAdapter(
+                    RichtextFacetFeatureUnion.class,
+                    new RichtextFacetFeatureSerializer())
             .create();
 
     public final static SimpleDateFormat dateFormat =

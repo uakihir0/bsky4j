@@ -18,7 +18,7 @@ public class GetTimelineTest extends AbstractTest {
                 .feed().getTimeline(
                         FeedGetTimelineRequest.builder()
                                 .accessJwt(accessJwt)
-                                .limit(1)
+                                .limit(100)
                                 .build()
                 );
 

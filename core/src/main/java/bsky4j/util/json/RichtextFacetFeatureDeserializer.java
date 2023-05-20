@@ -1,5 +1,6 @@
 package bsky4j.util.json;
 
+import bsky4j.BlueskyTypes;
 import bsky4j.model.bsky.richtext.RichtextFacetFeatureUnion;
 import bsky4j.model.bsky.richtext.RichtextFacetLink;
 import bsky4j.model.bsky.richtext.RichtextFacetMention;
@@ -25,12 +26,12 @@ public class RichtextFacetFeatureDeserializer implements JsonDeserializer<Richte
         JsonElement type = obj.get("$type");
 
         if (type != null) {
-            if (type.getAsString().equals(RichtextFacetLink.TYPE)) {
+            if (type.getAsString().equals(BlueskyTypes.RichtextFacet + "#link")) {
                 return context.deserialize(obj, new TypeToken<RichtextFacetLink>() {
                 }.getType());
             }
 
-            if (type.getAsString().equals(RichtextFacetMention.TYPE)) {
+            if (type.getAsString().equals(BlueskyTypes.RichtextFacet + "#mention")) {
                 return context.deserialize(obj, new TypeToken<RichtextFacetMention>() {
                 }.getType());
             }

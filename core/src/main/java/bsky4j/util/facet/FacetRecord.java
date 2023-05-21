@@ -1,7 +1,5 @@
 package bsky4j.util.facet;
 
-import javax.annotation.Nullable;
-
 public class FacetRecord {
     private FacetType type;
     private String contentText;

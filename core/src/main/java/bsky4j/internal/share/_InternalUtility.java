@@ -2,12 +2,14 @@ package bsky4j.internal.share;
 
 import bsky4j.ATProtocolException;
 import bsky4j.api.entity.share.Response;
+import bsky4j.model.bsky.embed.EmbedRecordViewUnion;
 import bsky4j.model.bsky.embed.EmbedUnion;
 import bsky4j.model.bsky.embed.EmbedViewUnion;
 import bsky4j.model.bsky.feed.FeedDefsThreadUnion;
 import bsky4j.model.bsky.richtext.RichtextFacetFeatureUnion;
 import bsky4j.model.share.RecordUnion;
 import bsky4j.util.json.EmbedDeserializer;
+import bsky4j.util.json.EmbedRecordViewDeserializer;
 import bsky4j.util.json.EmbedSerializer;
 import bsky4j.util.json.EmbedViewDeserializer;
 import bsky4j.util.json.FeedDefsThreadDeserializer;
@@ -51,6 +53,9 @@ public class _InternalUtility {
             .registerTypeAdapter(
                     RichtextFacetFeatureUnion.class,
                     new RichtextFacetFeatureSerializer())
+            .registerTypeAdapter(
+                    EmbedRecordViewUnion.class,
+                    new EmbedRecordViewDeserializer())
             .create();
 
     public final static SimpleDateFormat dateFormat =

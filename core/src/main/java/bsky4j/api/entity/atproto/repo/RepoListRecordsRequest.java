@@ -25,12 +25,20 @@ public class RepoListRecordsRequest implements MapRequest {
     private Integer limit;
 
     /**
+     * rkey cursor.
+     */
+    @Nullable
+    private String cursor;
+
+    /**
+     * (DEPRECATED)
      * The lowest sort-ordered rkey to start from (exclusive)
      */
     @Nullable
     private String rkeyStart;
 
     /**
+     * (DEPRECATED)
      * The highest sort-ordered rkey to stop at (exclusive)
      */
     @Nullable
@@ -48,6 +56,7 @@ public class RepoListRecordsRequest implements MapRequest {
         addParam(map, "repo", getRepo());
         addParam(map, "collection", getCollection());
         addParam(map, "limit", getLimit());
+        addParam(map, "cursor", getCursor());
         addParam(map, "rkeyStart", getRkeyStart());
         addParam(map, "rkeyEnd", getRkeyEnd());
         addParam(map, "reverse", getReverse());
@@ -73,6 +82,11 @@ public class RepoListRecordsRequest implements MapRequest {
     }
 
     @Nullable
+    public String getCursor() {
+        return cursor;
+    }
+
+    @Nullable
     public String getRkeyStart() {
         return rkeyStart;
     }
@@ -91,10 +105,10 @@ public class RepoListRecordsRequest implements MapRequest {
         private String repo;
         private String collection;
         private Integer limit;
+        private String cursor;
         private String rkeyStart;
         private String rkeyEnd;
         private Boolean reverse;
-        private String accessJwt;
 
         private RepoListRecordsRequestBuilder() {
         }
@@ -111,6 +125,11 @@ public class RepoListRecordsRequest implements MapRequest {
 
         public RepoListRecordsRequestBuilder limit(Integer limit) {
             this.limit = limit;
+            return this;
+        }
+
+        public RepoListRecordsRequestBuilder cursor(String cursor) {
+            this.cursor = cursor;
             return this;
         }
 
@@ -131,11 +150,12 @@ public class RepoListRecordsRequest implements MapRequest {
 
         public RepoListRecordsRequest build() {
             RepoListRecordsRequest repoListRecordsRequest = new RepoListRecordsRequest();
-            repoListRecordsRequest.repo = this.repo;
-            repoListRecordsRequest.rkeyEnd = this.rkeyEnd;
             repoListRecordsRequest.reverse = this.reverse;
             repoListRecordsRequest.limit = this.limit;
+            repoListRecordsRequest.cursor = this.cursor;
+            repoListRecordsRequest.repo = this.repo;
             repoListRecordsRequest.rkeyStart = this.rkeyStart;
+            repoListRecordsRequest.rkeyEnd = this.rkeyEnd;
             repoListRecordsRequest.collection = this.collection;
             return repoListRecordsRequest;
         }

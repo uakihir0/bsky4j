@@ -21,7 +21,7 @@ public class EmbedRecordViewRecord implements EmbedRecordViewUnion {
     private ActorDefsProfileViewBasic author;
     private RecordUnion value;
     private List<LabelDefsLabel> labels;
-    private List<EmbedRecordViewUnion> embeds;
+    private List<EmbedViewUnion> embeds;
     private String indexedAt;
 
     // region
@@ -65,11 +65,11 @@ public class EmbedRecordViewRecord implements EmbedRecordViewUnion {
         this.labels = labels;
     }
 
-    public List<EmbedRecordViewUnion> getEmbeds() {
+    public List<EmbedViewUnion> getEmbeds() {
         return embeds;
     }
 
-    public void setEmbeds(List<EmbedRecordViewUnion> embeds) {
+    public void setEmbeds(List<EmbedViewUnion> embeds) {
         this.embeds = embeds;
     }
 

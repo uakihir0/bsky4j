@@ -1,5 +1,7 @@
 package bsky4j.api.bsky;
 
+import bsky4j.api.entity.bsky.actor.ActorGetPreferencesRequest;
+import bsky4j.api.entity.bsky.actor.ActorGetPreferencesResponse;
 import bsky4j.api.entity.bsky.actor.ActorGetProfileRequest;
 import bsky4j.api.entity.bsky.actor.ActorGetProfileResponse;
 import bsky4j.api.entity.bsky.actor.ActorGetProfilesRequest;
@@ -24,5 +26,10 @@ public interface ActorResource {
      *
      */
     Response<ActorGetProfilesResponse> getProfiles(ActorGetProfilesRequest request);
+
+    /**
+     * Get private preferences attached to the account.
+     */
+    Response<ActorGetPreferencesResponse> getPreferences(ActorGetPreferencesRequest request);
 
 }

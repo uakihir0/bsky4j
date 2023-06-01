@@ -8,8 +8,16 @@ import bsky4j.api.entity.atproto.repo.RepoDeleteRecordRequest;
 import bsky4j.api.entity.bsky.feed.FeedDeleteLikeRequest;
 import bsky4j.api.entity.bsky.feed.FeedDeletePostRequest;
 import bsky4j.api.entity.bsky.feed.FeedDeleteRepostRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetActorFeedsRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetActorFeedsResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorsRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorsResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetLikesRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetLikesResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetPostThreadRequest;
@@ -146,6 +154,79 @@ public class _FeedResource implements FeedResource {
                             .request(HttpMediaType.APPLICATION_JSON);
 
             request.toMap().forEach(builder::param);
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<FeedGetFeedResponse> getFeed(
+            FeedGetFeedRequest request
+    ) {
+        return proceed(FeedGetFeedResponse.class, () -> {
+
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(xrpc(this.uri))
+                            .path(BlueskyTypes.FeedGetFeed)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<FeedGetActorFeedsResponse> getActorFeeds(
+            FeedGetActorFeedsRequest request
+    ) {
+        return proceed(FeedGetActorFeedsResponse.class, () -> {
+
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(xrpc(this.uri))
+                            .path(BlueskyTypes.FeedGetActorFeeds)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<FeedGetFeedGeneratorResponse> getFeedGenerator(
+            FeedGetFeedGeneratorRequest request
+    ) {
+        return proceed(FeedGetFeedGeneratorResponse.class, () -> {
+
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(xrpc(this.uri))
+                            .path(BlueskyTypes.FeedGetFeedGenerator)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<FeedGetFeedGeneratorsResponse> getFeedGenerators(
+            FeedGetFeedGeneratorsRequest request
+    ) {
+        return proceed(FeedGetFeedGeneratorsResponse.class, () -> {
+
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(xrpc(this.uri))
+                            .path(BlueskyTypes.FeedGetFeedGenerators)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.getFeeds().forEach(u ->
+                    builder.param("feeds", u));
             return builder.get();
         });
     }

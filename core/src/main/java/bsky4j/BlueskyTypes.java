@@ -10,6 +10,7 @@ public class BlueskyTypes {
     public static String ActorProfile = "app.bsky.actor.profile";
     public static String ActorGetProfile = "app.bsky.actor.getProfile";
     public static String ActorGetProfiles = "app.bsky.actor.getProfiles";
+    public static String ActorGetPreferences = "app.bsky.actor.getPreferences";
     public static String ActorGetSuggestions = "app.bsky.actor.getSuggestions";
     public static String ActorSearchActors = "app.bsky.actor.searchActors";
     public static String ActorSearchActorsTypeahead = "app.bsky.actor.searchActorsTypeahead";
@@ -31,6 +32,10 @@ public class BlueskyTypes {
     public static String FeedLike = "app.bsky.feed.like";
     public static String FeedPost = "app.bsky.feed.post";
     public static String FeedRepost = "app.bsky.feed.repost";
+    public static String FeedGetFeed = "app.bsky.feed.getFeed";
+    public static String FeedGetActorFeeds = "app.bsky.feed.getActorFeeds";
+    public static String FeedGetFeedGenerator = "app.bsky.feed.getFeedGenerator";
+    public static String FeedGetFeedGenerators = "app.bsky.feed.getFeedGenerators";
 
     // Graph
     public static String GraphFollow = "app.bsky.graph.follow";

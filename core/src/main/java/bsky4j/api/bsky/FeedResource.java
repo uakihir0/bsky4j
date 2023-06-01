@@ -3,8 +3,16 @@ package bsky4j.api.bsky;
 import bsky4j.api.entity.bsky.feed.FeedDeleteLikeRequest;
 import bsky4j.api.entity.bsky.feed.FeedDeletePostRequest;
 import bsky4j.api.entity.bsky.feed.FeedDeleteRepostRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetActorFeedsRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetActorFeedsResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorsRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorsResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetFeedResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetLikesRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetLikesResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetPostThreadRequest;
@@ -58,6 +66,26 @@ public interface FeedResource {
      * A view of the user's home timeline.
      */
     Response<FeedGetTimelineResponse> getTimeline(FeedGetTimelineRequest request);
+
+    /**
+     * Compose and hydrate a feed from a user's selected feed generator.
+     */
+    Response<FeedGetFeedResponse> getFeed(FeedGetFeedRequest request);
+
+    /**
+     * Retrieve a list of feeds created by a given actor
+     */
+    Response<FeedGetActorFeedsResponse> getActorFeeds(FeedGetActorFeedsRequest request);
+
+    /**
+     * Get information about a specific feed offered by a feed generator, such as its online status.
+     */
+    Response<FeedGetFeedGeneratorResponse> getFeedGenerator(FeedGetFeedGeneratorRequest request);
+
+    /**
+     * Get information about a list of feed generators.
+     */
+    Response<FeedGetFeedGeneratorsResponse> getFeedGenerators(FeedGetFeedGeneratorsRequest request);
 
     /**
      * Like feed operation.

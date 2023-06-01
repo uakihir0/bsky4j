@@ -1,14 +1,9 @@
 package bsky4j.util.json;
 
-import bsky4j.model.bsky.embed.EmbedExternalView;
-import bsky4j.model.bsky.embed.EmbedImagesView;
-import bsky4j.model.bsky.embed.EmbedRecordView;
 import bsky4j.model.bsky.embed.EmbedRecordViewBlocked;
 import bsky4j.model.bsky.embed.EmbedRecordViewNotFound;
 import bsky4j.model.bsky.embed.EmbedRecordViewRecord;
 import bsky4j.model.bsky.embed.EmbedRecordViewUnion;
-import bsky4j.model.bsky.embed.EmbedRecordWithMediaView;
-import bsky4j.model.bsky.embed.EmbedViewUnion;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;

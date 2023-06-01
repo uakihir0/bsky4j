@@ -2,6 +2,8 @@ package bsky4j.internal.bsky;
 
 import bsky4j.BlueskyTypes;
 import bsky4j.api.bsky.ActorResource;
+import bsky4j.api.entity.bsky.actor.ActorGetPreferencesRequest;
+import bsky4j.api.entity.bsky.actor.ActorGetPreferencesResponse;
 import bsky4j.api.entity.bsky.actor.ActorGetProfileRequest;
 import bsky4j.api.entity.bsky.actor.ActorGetProfileResponse;
 import bsky4j.api.entity.bsky.actor.ActorGetProfilesRequest;
@@ -75,6 +77,24 @@ public class _ActorResource implements ActorResource {
             request.getActors().forEach((actor) -> {
                 builder.param("actors", actor);
             });
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<ActorGetPreferencesResponse> getPreferences(
+            ActorGetPreferencesRequest request
+    ) {
+        return proceed(ActorGetPreferencesResponse.class, () -> {
+
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(xrpc(this.uri))
+                            .path(BlueskyTypes.ActorGetPreferences)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
             return builder.get();
         });
     }

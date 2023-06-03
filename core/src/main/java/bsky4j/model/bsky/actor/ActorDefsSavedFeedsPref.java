@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ActorDefsSavedFeedsPref implements ActorDefsPreferencesUnion {
 
-    public static final String TYPE = BlueskyTypes.EmbedRecord + "#savedFeedsPref";
+    public static final String TYPE = BlueskyTypes.ActorDefs + "#savedFeedsPref";
 
     @Override
     public String getType() {

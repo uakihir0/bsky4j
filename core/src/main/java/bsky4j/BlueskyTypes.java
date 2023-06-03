@@ -7,6 +7,7 @@ package bsky4j;
 public class BlueskyTypes {
 
     // Actor
+    public static String ActorDefs = "app.bsky.actor.defs";
     public static String ActorProfile = "app.bsky.actor.profile";
     public static String ActorGetProfile = "app.bsky.actor.getProfile";
     public static String ActorGetProfiles = "app.bsky.actor.getProfiles";

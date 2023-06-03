@@ -4,7 +4,7 @@ import bsky4j.BlueskyTypes;
 
 public class ActorDefsContentLabelPref implements ActorDefsPreferencesUnion {
 
-    public static final String TYPE = BlueskyTypes.EmbedRecord + "#contentLabelPref";
+    public static final String TYPE = BlueskyTypes.ActorDefs + "#contentLabelPref";
 
     @Override
     public String getType() {

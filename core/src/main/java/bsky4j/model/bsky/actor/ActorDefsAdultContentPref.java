@@ -4,7 +4,7 @@ import bsky4j.BlueskyTypes;
 
 public class ActorDefsAdultContentPref implements ActorDefsPreferencesUnion {
 
-    public static final String TYPE = BlueskyTypes.EmbedRecord + "#adultContentPref";
+    public static final String TYPE = BlueskyTypes.ActorDefs + "#adultContentPref";
 
     @Override
     public String getType() {

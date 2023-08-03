@@ -28,6 +28,8 @@ import net.socialhub.http.HttpResponseCode;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
+import static java.util.TimeZone.getTimeZone;
+
 /**
  * @author uakihir0
  */
@@ -63,8 +65,12 @@ public class _InternalUtility {
                     new ActorDefsPreferencesDeserializer())
             .create();
 
-    public final static SimpleDateFormat dateFormat =
-            new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+    public final static SimpleDateFormat dateFormat;
+
+    static {
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        dateFormat.setTimeZone(getTimeZone("UTC"));
+    }
 
     private _InternalUtility() {
     }

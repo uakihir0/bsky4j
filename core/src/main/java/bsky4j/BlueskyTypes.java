@@ -35,6 +35,7 @@ public class BlueskyTypes {
     public static String FeedRepost = "app.bsky.feed.repost";
     public static String FeedGetFeed = "app.bsky.feed.getFeed";
     public static String FeedGetActorFeeds = "app.bsky.feed.getActorFeeds";
+    public static String FeedGetActorLikes = "app.bsky.feed.getActorLikes";
     public static String FeedGetFeedGenerator = "app.bsky.feed.getFeedGenerator";
     public static String FeedGetFeedGenerators = "app.bsky.feed.getFeedGenerators";
 

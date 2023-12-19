@@ -1,11 +1,13 @@
 package bsky4j.model.bsky.feed;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import bsky4j.BlueskyTypes;
 import bsky4j.model.bsky.embed.EmbedUnion;
 import bsky4j.model.bsky.richtext.RichtextFacet;
 import bsky4j.model.share.RecordUnion;
-
-import java.util.List;
 
 public class FeedPost implements RecordUnion {
 
@@ -17,6 +19,8 @@ public class FeedPost implements RecordUnion {
     }
 
     private String text;
+
+    @Nullable
     private List<RichtextFacet> facets;
     private FeedPostReplyRef reply;
     private EmbedUnion embed;
@@ -31,11 +35,12 @@ public class FeedPost implements RecordUnion {
         this.text = text;
     }
 
+    @Nullable
     public List<RichtextFacet> getFacets() {
         return facets;
     }
 
-    public void setFacets(List<RichtextFacet> facets) {
+    public void setFacets(@Nullable List<RichtextFacet> facets) {
         this.facets = facets;
     }
 

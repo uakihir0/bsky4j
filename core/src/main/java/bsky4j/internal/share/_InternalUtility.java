@@ -1,5 +1,18 @@
 package bsky4j.internal.share;
 
+import static java.util.TimeZone.getTimeZone;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import net.socialhub.http.HttpException;
+import net.socialhub.http.HttpResponse;
+import net.socialhub.http.HttpResponseCode;
+
+import java.text.SimpleDateFormat;
+import java.util.Map;
+
 import bsky4j.ATProtocolException;
 import bsky4j.api.entity.share.Response;
 import bsky4j.model.bsky.actor.ActorDefsPreferencesUnion;
@@ -18,17 +31,6 @@ import bsky4j.util.json.FeedDefsThreadDeserializer;
 import bsky4j.util.json.RecordDeserializer;
 import bsky4j.util.json.RichtextFacetFeatureDeserializer;
 import bsky4j.util.json.RichtextFacetFeatureSerializer;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import net.socialhub.http.HttpException;
-import net.socialhub.http.HttpResponse;
-import net.socialhub.http.HttpResponseCode;
-
-import java.text.SimpleDateFormat;
-import java.util.Map;
-
-import static java.util.TimeZone.getTimeZone;
 
 /**
  * @author uakihir0
@@ -93,7 +95,9 @@ public class _InternalUtility {
             HttpResponse response = function.proceed();
             if (response.getStatusCode() == HttpResponseCode.OK) {
                 Response<T> result = new Response<>();
-                result.set(gson.fromJson(response.asString(), clazz));
+                String json = response.asString();
+                result.setJson(json);
+                result.set(gson.fromJson(json, clazz));
                 return result;
             }
             throw new ATProtocolException(null);
@@ -108,7 +112,9 @@ public class _InternalUtility {
             HttpResponse response = function.proceed();
             if (response.getStatusCode() == HttpResponseCode.OK) {
                 Response<T> result = new Response<>();
-                result.set(gson.fromJson(response.asString(), clazz.getType()));
+                final String json = response.asString();
+                result.setJson(json);
+                result.set(gson.fromJson(json, clazz.getType()));
                 return result;
             }
 

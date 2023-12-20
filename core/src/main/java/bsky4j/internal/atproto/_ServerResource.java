@@ -1,5 +1,11 @@
 package bsky4j.internal.atproto;
 
+import static bsky4j.internal.share._InternalUtility.proceed;
+import static bsky4j.internal.share._InternalUtility.xrpc;
+
+import net.socialhub.http.HttpMediaType;
+import net.socialhub.http.HttpRequestBuilder;
+
 import bsky4j.ATProtocolTypes;
 import bsky4j.api.atproto.ServerResource;
 import bsky4j.api.entity.atproto.server.ServerCreateSessionRequest;
@@ -8,11 +14,6 @@ import bsky4j.api.entity.atproto.server.ServerGetSessionResponse;
 import bsky4j.api.entity.atproto.server.ServerRefreshSessionResponse;
 import bsky4j.api.entity.share.AuthRequest;
 import bsky4j.api.entity.share.Response;
-import net.socialhub.http.HttpMediaType;
-import net.socialhub.http.HttpRequestBuilder;
-
-import static bsky4j.internal.share._InternalUtility.proceed;
-import static bsky4j.internal.share._InternalUtility.xrpc;
 
 public class _ServerResource implements ServerResource {
 
@@ -90,7 +91,7 @@ public class _ServerResource implements ServerResource {
                     .path(ATProtocolTypes.ServerRefreshSession)
                     .request(HttpMediaType.APPLICATION_JSON)
                     .header("Authorization", request.getBearerToken())
-                    .get();
+                    .post();
         });
     }
 

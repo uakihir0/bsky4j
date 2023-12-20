@@ -5,6 +5,8 @@ import bsky4j.api.entity.bsky.feed.FeedDeletePostRequest;
 import bsky4j.api.entity.bsky.feed.FeedDeleteRepostRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetActorFeedsRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetActorFeedsResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetActorLikesRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetActorLikesResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorRequest;
@@ -76,6 +78,11 @@ public interface FeedResource {
      * Retrieve a list of feeds created by a given actor
      */
     Response<FeedGetActorFeedsResponse> getActorFeeds(FeedGetActorFeedsRequest request);
+
+    /**
+     * Get a list of posts liked by an actor.
+     */
+    Response<FeedGetActorLikesResponse> getActorLikes(FeedGetActorLikesRequest request);
 
     /**
      * Get information about a specific feed offered by a feed generator, such as its online status.

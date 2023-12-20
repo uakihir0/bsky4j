@@ -1,5 +1,11 @@
 package bsky4j.internal.bsky;
 
+import static bsky4j.internal.share._InternalUtility.proceed;
+import static bsky4j.internal.share._InternalUtility.xrpc;
+
+import net.socialhub.http.HttpMediaType;
+import net.socialhub.http.HttpRequestBuilder;
+
 import bsky4j.ATProtocolTypes;
 import bsky4j.BlueskyTypes;
 import bsky4j.api.bsky.FeedResource;
@@ -10,6 +16,8 @@ import bsky4j.api.entity.bsky.feed.FeedDeletePostRequest;
 import bsky4j.api.entity.bsky.feed.FeedDeleteRepostRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetActorFeedsRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetActorFeedsResponse;
+import bsky4j.api.entity.bsky.feed.FeedGetActorLikesRequest;
+import bsky4j.api.entity.bsky.feed.FeedGetActorLikesResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
 import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
 import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorRequest;
@@ -35,11 +43,6 @@ import bsky4j.api.entity.bsky.feed.FeedPostResponse;
 import bsky4j.api.entity.bsky.feed.FeedRepostRequest;
 import bsky4j.api.entity.bsky.feed.FeedRepostResponse;
 import bsky4j.api.entity.share.Response;
-import net.socialhub.http.HttpMediaType;
-import net.socialhub.http.HttpRequestBuilder;
-
-import static bsky4j.internal.share._InternalUtility.proceed;
-import static bsky4j.internal.share._InternalUtility.xrpc;
 
 public class _FeedResource implements FeedResource {
 
@@ -186,6 +189,24 @@ public class _FeedResource implements FeedResource {
                     new HttpRequestBuilder()
                             .target(xrpc(this.uri))
                             .path(BlueskyTypes.FeedGetActorFeeds)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<FeedGetActorLikesResponse> getActorLikes(
+            FeedGetActorLikesRequest request
+    ) {
+        return proceed(FeedGetActorLikesResponse.class, () -> {
+
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(xrpc(this.uri))
+                            .path(BlueskyTypes.FeedGetActorLikes)
                             .header("Authorization", request.getBearerToken())
                             .request(HttpMediaType.APPLICATION_JSON);
 

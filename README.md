@@ -1,3 +1,5 @@
+### **If you are using this library on the JVM platform, especially with Kotlin, we recommend that you migrate to [kbsky](https://github.com/uakihir0/kbsky). This library is being migrated to maintenance only.**
+
 # bsky4j
 
 [![](https://jitpack.io/v/uakihir0/bsky4j.svg)](https://jitpack.io/#uakihir0/bsky4j)

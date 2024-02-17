@@ -11,15 +11,7 @@ import java.util.List;
 public interface UndocumentedResource {
 
     /**
-     * (Undocumented endpoint)
-     * Search feeds.
-     */
-    Response<List<UndocSearchFeedsResponse>> searchFeeds(UndocSearchFeedsRequest request);
-
-
-    /**
      *
      */
     Response<UndocGetPopularResponse> getPopular(UndocGetPopularRequest request);
-
 }

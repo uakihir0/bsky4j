@@ -1,48 +1,17 @@
 package bsky4j.internal.bsky;
 
-import static bsky4j.internal.share._InternalUtility.proceed;
-import static bsky4j.internal.share._InternalUtility.xrpc;
-
-import net.socialhub.http.HttpMediaType;
-import net.socialhub.http.HttpRequestBuilder;
-
 import bsky4j.ATProtocolTypes;
 import bsky4j.BlueskyTypes;
 import bsky4j.api.bsky.FeedResource;
 import bsky4j.api.entity.atproto.repo.RepoCreateRecordRequest;
 import bsky4j.api.entity.atproto.repo.RepoDeleteRecordRequest;
-import bsky4j.api.entity.bsky.feed.FeedDeleteLikeRequest;
-import bsky4j.api.entity.bsky.feed.FeedDeletePostRequest;
-import bsky4j.api.entity.bsky.feed.FeedDeleteRepostRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetActorFeedsRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetActorFeedsResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetActorLikesRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetActorLikesResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetAuthorFeedResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorsRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetFeedGeneratorsResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetFeedRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetFeedResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetLikesRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetLikesResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetPostThreadRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetPostThreadResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetPostsRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetPostsResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetRepostedByRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetRepostedByResponse;
-import bsky4j.api.entity.bsky.feed.FeedGetTimelineRequest;
-import bsky4j.api.entity.bsky.feed.FeedGetTimelineResponse;
-import bsky4j.api.entity.bsky.feed.FeedLikeRequest;
-import bsky4j.api.entity.bsky.feed.FeedLikeResponse;
-import bsky4j.api.entity.bsky.feed.FeedPostRequest;
-import bsky4j.api.entity.bsky.feed.FeedPostResponse;
-import bsky4j.api.entity.bsky.feed.FeedRepostRequest;
-import bsky4j.api.entity.bsky.feed.FeedRepostResponse;
+import bsky4j.api.entity.bsky.feed.*;
 import bsky4j.api.entity.share.Response;
+import net.socialhub.http.HttpMediaType;
+import net.socialhub.http.HttpRequestBuilder;
+
+import static bsky4j.internal.share._InternalUtility.proceed;
+import static bsky4j.internal.share._InternalUtility.xrpc;
 
 public class _FeedResource implements FeedResource {
 
@@ -121,6 +90,24 @@ public class _FeedResource implements FeedResource {
 
             request.getUris().forEach(u ->
                     builder.param("uris", u));
+            return builder.get();
+        });
+    }
+
+    @Override
+    public Response<FeedSearchPostsResponse> searchPosts(
+            FeedSearchPostsRequest request
+    ) {
+        return proceed(FeedSearchPostsResponse.class, () -> {
+
+            HttpRequestBuilder builder =
+                    new HttpRequestBuilder()
+                            .target(xrpc(this.uri))
+                            .path(BlueskyTypes.FeedGetFeedSearchPosts)
+                            .header("Authorization", request.getBearerToken())
+                            .request(HttpMediaType.APPLICATION_JSON);
+
+            request.toMap().forEach(builder::param);
             return builder.get();
         });
     }

@@ -26,35 +26,6 @@ public class _UndocumentedResource implements UndocumentedResource {
     }
 
     @Override
-    public Response<List<UndocSearchFeedsResponse>> searchFeeds(
-            UndocSearchFeedsRequest request
-    ) {
-        return proceed(new TypeToken<List<UndocSearchFeedsResponse>>() {
-        }, () -> {
-            try {
-                // TODO: エンドポイントを外部指定可能に変更
-                URL url = new URL(this.uri);
-                String target = url.getProtocol()
-                        + "://search."
-                        + url.getHost()
-                        + "/search/";
-
-                HttpRequestBuilder builder =
-                        new HttpRequestBuilder()
-                                .target(target)
-                                .path("posts")
-                                .request(HttpMediaType.APPLICATION_JSON);
-
-                request.toMap().forEach(builder::param);
-                return builder.get();
-
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
-
-    @Override
     public Response<UndocGetPopularResponse> getPopular(
             UndocGetPopularRequest request
     ) {
